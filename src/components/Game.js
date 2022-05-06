@@ -6,8 +6,8 @@ export const Game = ({ t1, t2, win, match, selectWinner }) => {
     selectWinner(match, e.target.value);
   };
   return (
-    <div>
-      test
+    <div className="match">
+      <div className="match-number">Match {match}</div>
       <Radio.Group onChange={onChange} optionType="button" buttonStyle="solid">
         <Radio.Button value={t1}>{t1.toUpperCase()}</Radio.Button>
         <Radio.Button value={t2}>{t2.toUpperCase()}</Radio.Button>

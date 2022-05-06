@@ -17,7 +17,7 @@ body {
 }
 
 .table-row {
-  color: black;
+  color: #181847;
   font-weight: bold;
   display: flex;
   margin: 10px;
@@ -55,4 +55,9 @@ body {
 .sub-header {
   padding-top: 10px;
   color: #fff;
+}
+
+.match-number {
+  font-weight: 400;
+  font-size: 0.8rem;
 }
