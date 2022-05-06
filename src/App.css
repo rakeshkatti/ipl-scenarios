@@ -2,11 +2,6 @@ body {
   background: #213885;
 }
 
-.container {
-  margin: 0 auto;
-  max-width: 500px;
-}
-
 .table-header {
   color: white;
   font-weight: bold;
@@ -66,14 +61,4 @@ body {
   text-align: center;
   color: #ccc;
   padding: 4px;
-}
-
-.main-container {
-  display: flex;
-}
-
-.left-container,
-.right-container {
-  flex: 1;
-  max-width: 300px;
 }
