@@ -63,7 +63,17 @@ body {
 }
 
 .footer {
-  text-align: right;
+  text-align: center;
   color: #ccc;
   padding: 4px;
+}
+
+.main-container {
+  display: flex;
+}
+
+.left-container,
+.right-container {
+  flex: 1;
+  max-width: 300px;
 }

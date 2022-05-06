@@ -78,7 +78,8 @@ function App() {
     return b.p - a.p;
   });
   return (
-    <>
+    <div className="main-container">
+      <div className="left-container"></div>
       <div className="container">
         <h1 className="header">IPL Points Table Scenarios Calculator</h1>
         <div className="table-header">
@@ -105,12 +106,14 @@ function App() {
             />
           ))}
         </div>
+        <div className="footer">
+          Made by tensed RCB fan. Report any issues/feedback{" "}
+          <a href="https://twitter.com/rakesh_katti">@rakesh_katti</a>{" "}
+        </div>
       </div>
-      <div className="footer">
-        Made by tensed Fan. Report any issues/feedback{" "}
-        <a href="https://twitter.com/rakesh_katti">@rakesh_katti</a>{" "}
-      </div>
-    </>
+
+      <div className="right-container"></div>
+    </div>
   );
 }
 
