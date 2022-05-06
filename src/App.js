@@ -78,30 +78,39 @@ function App() {
     return b.p - a.p;
   });
   return (
-    <div className="container">
-      <h1 className="header">IPL Points Table Scenarios Calculator</h1>
-      <div className="table-header">
-        <div>Team</div>
-        <div>PLD</div>
-        <div>WON</div>
-        <div>LOST</div>
-        <div>N/R</div>
-        <div>PTS</div>
-        <div>NET RR</div>
-      </div>
-      {sortedTable.map((team) => (
-        <TableRow team={team} {...table[team]} />
-      ))}
-      <h3 className="sub-header">
-        Choose the winning team to see the table change according those
-        scenarios
-      </h3>
-      <div className="game-container">
-        {Object.keys(matches).map((match) => (
-          <Game match={match} selectWinner={selectWinner} {...matches[match]} />
+    <>
+      <div className="container">
+        <h1 className="header">IPL Points Table Scenarios Calculator</h1>
+        <div className="table-header">
+          <div>Team</div>
+          <div>PLD</div>
+          <div>WON</div>
+          <div>LOST</div>
+          <div>N/R</div>
+          <div>PTS</div>
+          <div>NET RR</div>
+        </div>
+        {sortedTable.map((team) => (
+          <TableRow team={team} {...table[team]} />
         ))}
+        <h3 className="sub-header">
+          Choose the winning team to see the table change accordingly.
+        </h3>
+        <div className="game-container">
+          {Object.keys(matches).map((match) => (
+            <Game
+              match={match}
+              selectWinner={selectWinner}
+              {...matches[match]}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+      <div className="footer">
+        Made by tensed Fan. Report any issues/feedback{" "}
+        <a href="https://twitter.com/rakesh_katti">@rakesh_katti</a>{" "}
+      </div>
+    </>
   );
 }
 

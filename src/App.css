@@ -61,3 +61,9 @@ body {
   font-weight: 400;
   font-size: 0.8rem;
 }
+
+.footer {
+  text-align: right;
+  color: #ccc;
+  padding: 4px;
+}
