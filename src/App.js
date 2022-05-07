@@ -101,7 +101,7 @@ function App() {
         ))}
       </div>
       <div className="footer">
-        Made by tensed RCB fan. Report any issues/feedback{" "}
+        Made by a RCB fan with ❤️ and 😰. Report any issues/feedback{" "}
         <a href="https://twitter.com/rakesh_katti">@rakesh_katti</a>{" "}
       </div>
     </>
