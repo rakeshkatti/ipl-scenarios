@@ -1,12 +1,12 @@
 export const tabularData = {
   gt: { m: 11, w: 8, l: 3, nr: 0, p: 16, nrr: "+0.120" },
-  lsg: { m: 10, w: 7, l: 3, nr: 0, p: 14, nrr: "+0.397" },
+  lsg: { m: 11, w: 8, l: 3, nr: 0, p: 16, nrr: "+0.703" },
   rr: { m: 11, w: 7, l: 4, nr: 0, p: 14, nrr: "+0.326" },
   srh: { m: 10, w: 5, l: 5, nr: 0, p: 10, nrr: "+0.325" },
   pbks: { m: 11, w: 5, l: 6, nr: 0, p: 10, nrr: "-0.231" },
   rcb: { m: 11, w: 6, l: 5, nr: 0, p: 12, nrr: "-0.444" },
   dc: { m: 10, w: 5, l: 5, nr: 0, p: 10, nrr: "+0.641" },
-  kkr: { m: 10, w: 4, l: 6, nr: 0, p: 8, nrr: "+0.060" },
+  kkr: { m: 11, w: 4, l: 7, nr: 0, p: 8, nrr: "-0.304" },
   csk: { m: 10, w: 3, l: 7, nr: 0, p: 6, nrr: "-0.431" },
   mi: { m: 10, w: 2, l: 8, nr: 0, p: 4, nrr: "-0.725" },
 };
