@@ -3,7 +3,7 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import { Game } from "./components/Game";
 
-const qualifiedTeams = [];
+const qualifiedTeams = ["gt"];
 const getPosition = (team, position) => {
   if (qualifiedTeams.includes(team)) {
     return <span className="qualified">Q</span>;
