@@ -33,7 +33,8 @@ function App() {
 
   useEffect(() => {
     fetch(
-      "https://raw.githubusercontent.com/alexsanjoseph/ipl-scenario-builder/main/data/current_standings.json"
+      "https://raw.githubusercontent.com/alexsanjoseph/ipl-scenario-builder/main/data/current_standings.json",
+      { cache: "reload" }
     )
       .then((resp) => resp.json())
       .then((data) => {
@@ -43,7 +44,8 @@ function App() {
 
   useEffect(() => {
     fetch(
-      "https://raw.githubusercontent.com/alexsanjoseph/ipl-scenario-builder/main/data/filtered_fixtures.json"
+      "https://raw.githubusercontent.com/alexsanjoseph/ipl-scenario-builder/main/data/filtered_fixtures.json",
+      { cache: "reload" }
     )
       .then((resp) => resp.json())
       .then((data) => {
