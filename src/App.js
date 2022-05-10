@@ -3,17 +3,29 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import { Game } from "./components/Game";
 
-const TableRow = ({ team, m, w, l, p, nr, nrr }) => (
-  <div className="table-row">
-    <div>{team.toUpperCase()}</div>
-    <div>{m}</div>
-    <div>{w}</div>
-    <div>{l}</div>
-    <div>{nr}</div>
-    <div>{p}</div>
-    <div>{nrr}</div>
-  </div>
-);
+const qualifiedTeams = [];
+const getPosition = (team, position) => {
+  if (qualifiedTeams.includes(team)) {
+    return <span className="qualified">Q</span>;
+  }
+  return <span>{position}</span>;
+};
+
+const TableRow = ({ team, m, w, l, p, nr, nrr, position }) => {
+  const formattedNRR = nrr > 0 ? `+${nrr}` : nrr;
+  return (
+    <div className="table-row">
+      <div>{getPosition(team, position)}</div>
+      <div>{team.toUpperCase()}</div>
+      <div>{m}</div>
+      <div>{w}</div>
+      <div>{l}</div>
+      <div>{nr}</div>
+      <div>{p}</div>
+      <div>{formattedNRR}</div>
+    </div>
+  );
+};
 
 function App() {
   const [table, setTable] = useState({});
@@ -100,6 +112,7 @@ function App() {
     <>
       <h1 className="header">IPL Points Table Scenarios Calculator</h1>
       <div className="table-header">
+        <div>#</div>
         <div>Team</div>
         <div>PLD</div>
         <div>WON</div>
@@ -108,8 +121,8 @@ function App() {
         <div>PTS</div>
         <div>NET RR</div>
       </div>
-      {sortedTable.map((team) => (
-        <TableRow team={team} {...table[team]} />
+      {sortedTable.map((team, i) => (
+        <TableRow position={i + 1} team={team} {...table[team]} />
       ))}
       <h3 className="sub-header">
         Choose the winning team to see the table change accordingly.

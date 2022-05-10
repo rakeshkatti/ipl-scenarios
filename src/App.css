@@ -2,6 +2,11 @@ body {
   background: #213885;
 }
 
+.qualified {
+  color: #3bcf5a;
+  font-size: 1rem;
+}
+
 .table-header {
   color: white;
   font-weight: bold;
