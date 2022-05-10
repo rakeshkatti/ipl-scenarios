@@ -1,7 +1,6 @@
 import "antd/dist/antd.css";
 import "./App.css";
-import { tabularData, matchData } from "./data";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Game } from "./components/Game";
 
 const TableRow = ({ team, m, w, l, p, nr, nrr }) => (
@@ -17,8 +16,28 @@ const TableRow = ({ team, m, w, l, p, nr, nrr }) => (
 );
 
 function App() {
-  const [table, setTable] = useState(tabularData);
-  const [matches, setMatches] = useState(matchData);
+  const [table, setTable] = useState({});
+  const [matches, setMatches] = useState({});
+
+  useEffect(() => {
+    fetch(
+      "https://raw.githubusercontent.com/alexsanjoseph/ipl-scenario-builder/main/data/current_standings.json"
+    )
+      .then((resp) => resp.json())
+      .then((data) => {
+        setTable(data);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch(
+      "https://raw.githubusercontent.com/alexsanjoseph/ipl-scenario-builder/main/data/filtered_fixtures.json"
+    )
+      .then((resp) => resp.json())
+      .then((data) => {
+        setMatches(data);
+      });
+  }, []);
 
   const selectWinner = (match, winner) => {
     const selectedMatch = matches[match];
