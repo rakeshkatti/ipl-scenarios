@@ -155,7 +155,7 @@ function App() {
           ))}
         </div>
         <div className="scenarios">
-          <h3 className="sub-header">Possible Outcomes</h3>
+          <h3 className="sub-header">{scenarios.length} Possible Outcomes</h3>
           <Scenario
             updateScenario={updateScenario}
             scenarios={scenariosWithCustom}
