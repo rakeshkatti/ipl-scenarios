@@ -60,7 +60,7 @@ body {
 .footer {
   text-align: center;
   color: #ccc;
-  padding: 4rem 0.4rem 1rem;
+  padding: 2rem 0.4rem 1rem;
 }
 
 .scenarios {
@@ -82,4 +82,11 @@ body {
 .game-container {
   width: 100%;
   text-align: center;
+}
+
+.disclaimer {
+  padding: 1rem;
+  color: red;
+  background-color: rgba(255, 255, 255, 0.2);
+  font-weight: bold;
 }
