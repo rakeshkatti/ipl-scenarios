@@ -31,11 +31,6 @@ body {
   flex: 1;
 }
 
-.game-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-
 .game-container > div {
   width: 48%;
   text-align: center;
@@ -65,5 +60,26 @@ body {
 .footer {
   text-align: center;
   color: #ccc;
-  padding: 4px;
+  padding: 4rem 0.4rem 1rem;
+}
+
+.scenarios {
+  padding-top: 10px;
+  text-align: center;
+}
+
+.scenario {
+  padding-top: 10px;
+}
+
+.game-and-scenario {
+  display: flex;
+}
+.game-and-scenario div {
+  width: 100%;
+}
+
+.game-container {
+  width: 100%;
+  text-align: center;
 }
