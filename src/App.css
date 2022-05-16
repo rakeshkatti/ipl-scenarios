@@ -48,7 +48,7 @@ body {
 }
 
 .sub-header {
-  padding: 5px 15px;
+  padding-top: 10px;
   color: #fff;
 }
 
@@ -64,6 +64,7 @@ body {
 }
 
 .scenarios {
+  padding-top: 10px;
   text-align: center;
 }
 
@@ -73,7 +74,6 @@ body {
 
 .game-and-scenario {
   display: flex;
-  padding: 5px 15px;
 }
 .game-and-scenario div {
   width: 100%;
