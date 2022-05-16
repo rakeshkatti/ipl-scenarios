@@ -94,7 +94,6 @@ function App() {
 
   const scenarios = useMemo(
     () => getScenarios(initialMatchData.current, initialTable.current),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [initialMatchData.current, initialTable.current]
   );
   const scenariosWithCustom = [
