@@ -49,42 +49,42 @@ const makeScenario = (title, matches, required) => {
 
 export const getScenarios = (matches) => {
   return [
-    makeScenario("RCB to Qualify - 1", matches, {
+    makeScenario("RCB - 1", matches, {
       64: "pbks",
       67: "rcb",
       70: "srh",
     }),
-    makeScenario("RCB to Qualify - 2", matches, {
+    makeScenario("RCB - 2", matches, {
       64: "dc",
       67: "rcb",
       69: "mi",
     }),
-    makeScenario("KKR to Qualify", matches, {
+    makeScenario("KKR", matches, {
       64: "pbks",
       67: "gt",
       66: "kkr",
       69: "mi",
       70: "srh",
     }),
-    makeScenario("DC to Qualify", matches, {
+    makeScenario("DC", matches, {
       64: "dc",
       69: "dc",
     }),
-    makeScenario("DC to Q after losing", matches, {
+    makeScenario("DC after losing", matches, {
       64: "pbks",
       67: "gt",
       69: "dc",
     }),
-    makeScenario("PBKS to Qualify", matches, {
+    makeScenario("PBKS", matches, {
       64: "pbks",
       70: "pbks",
     }),
-    makeScenario("PBKS to Q after losing", matches, {
+    makeScenario("PBKS after losing", matches, {
       64: "dc",
       67: "gt",
       70: "pbks",
     }),
-    makeScenario("SRH to Q with NRR", matches, {
+    makeScenario("SRH with high NRR", matches, {
       64: "pbks",
       65: "srh",
       67: "gt",

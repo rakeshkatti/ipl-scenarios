@@ -155,7 +155,7 @@ function App() {
           ))}
         </div>
         <div className="scenarios">
-          <h3 className="sub-header">Popular Outcomes</h3>
+          <h3 className="sub-header">Popular outcomes for the 4th team</h3>
           <Scenario
             updateScenario={updateScenario}
             scenarios={scenariosWithCustom}
