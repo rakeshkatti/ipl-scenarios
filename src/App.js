@@ -110,6 +110,9 @@ function App() {
       const matchData = selectedScenario[0].matchData;
       setMatches(matchData);
       setScenario(selectedScenario[0]);
+      if (value === "Custom") {
+        return setTable(initialTable.current);
+      }
       const updatedTable = getUpdatedTable(matchData, initialTable.current);
       setTable(updatedTable);
     }
