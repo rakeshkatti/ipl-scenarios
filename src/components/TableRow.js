@@ -1,7 +1,11 @@
 import React from "react";
 
 const qualifiedTeams = ["gt"];
+const eliminatedTeams = ["csk", "mi"];
 const getPosition = (team, position) => {
+  if (eliminatedTeams.includes(team)) {
+    return <span className="eliminated">E</span>;
+  }
   if (qualifiedTeams.includes(team)) {
     return <span className="qualified">Q</span>;
   }
