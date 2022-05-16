@@ -163,10 +163,6 @@ function App() {
           />
         </div>
       </div>
-      <div className="disclaimer">
-        NOTE: We have considered current NRR for these outcomes. There are few
-        other scenarios if a team wins bigger margins.{" "}
-      </div>
       <div className="footer">
         Made by a RCB fan with ❤️ and 😰. Report any issues/feedback{" "}
         <a href="https://twitter.com/rakesh_katti">@rakesh_katti</a>{" "}
