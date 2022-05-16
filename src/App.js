@@ -18,7 +18,7 @@ function App() {
   useEffect(() => {
     fetch(
       "https://raw.githubusercontent.com/alexsanjoseph/ipl-scenario-builder/main/data/current_standings.json",
-      { cache: "no-store" }
+      { cache: "reload" }
     )
       .then((resp) => resp.json())
       .then((data) => {
@@ -30,7 +30,7 @@ function App() {
   useEffect(() => {
     fetch(
       "https://raw.githubusercontent.com/alexsanjoseph/ipl-scenario-builder/main/data/filtered_fixtures.json",
-      { cache: "no-store" }
+      { cache: "reload" }
     )
       .then((resp) => resp.json())
       .then((data) => {
