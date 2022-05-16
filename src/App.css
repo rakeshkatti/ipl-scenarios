@@ -31,11 +31,6 @@ body {
   flex: 1;
 }
 
-.game-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-
 .game-container > div {
   width: 48%;
   text-align: center;
@@ -53,7 +48,7 @@ body {
 }
 
 .sub-header {
-  padding-top: 10px;
+  padding: 5px 15px;
   color: #fff;
 }
 
@@ -65,5 +60,39 @@ body {
 .footer {
   text-align: center;
   color: #ccc;
-  padding: 4px;
+  padding: 2rem 0.4rem 1rem;
+}
+
+.scenarios {
+  text-align: center;
+}
+
+.scenario {
+  padding-top: 10px;
+}
+
+.game-and-scenario {
+  display: flex;
+  padding: 5px 15px;
+}
+.game-and-scenario div {
+  width: 100%;
+}
+
+.game-container {
+  width: 100%;
+  text-align: center;
+}
+
+.disclaimer {
+  padding: 1rem;
+  color: red;
+  background-color: rgba(255, 255, 255, 0.2);
+  font-weight: bold;
+}
+
+.note {
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: red;
 }

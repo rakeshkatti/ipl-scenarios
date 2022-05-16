@@ -1,36 +1,20 @@
 import "antd/dist/antd.css";
 import "./App.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { Game } from "./components/Game";
-
-const qualifiedTeams = ["gt"];
-const getPosition = (team, position) => {
-  if (qualifiedTeams.includes(team)) {
-    return <span className="qualified">Q</span>;
-  }
-  return <span>{position}</span>;
-};
-
-const TableRow = ({ team, m, w, l, p, nr, nrr, position }) => {
-  const formattedNRR = nrr > 0 ? `+${nrr}` : nrr;
-  return (
-    <div className="table-row">
-      <div>{getPosition(team, position)}</div>
-      <div>{team.toUpperCase()}</div>
-      <div>{m}</div>
-      <div>{w}</div>
-      <div>{l}</div>
-      <div>{nr}</div>
-      <div>{p}</div>
-      <div>{formattedNRR}</div>
-    </div>
-  );
-};
+import { Scenario } from "./components/Scenario";
+import { TableRow } from "./components/TableRow";
+import { getUpdatedTable, getScenarios } from "./utils";
 
 function App() {
   const [table, setTable] = useState({});
   const [matches, setMatches] = useState({});
+  const [currentScenario, setScenario] = useState({
+    title: "Custom",
+  });
 
+  let initialTable = useRef(table);
+  let initialMatchData = useRef(matches);
   useEffect(() => {
     fetch(
       "https://raw.githubusercontent.com/alexsanjoseph/ipl-scenario-builder/main/data/current_standings.json",
@@ -38,7 +22,8 @@ function App() {
     )
       .then((resp) => resp.json())
       .then((data) => {
-        setTable(data);
+        initialTable.current = data;
+        setTable(initialTable.current);
       });
   }, []);
 
@@ -49,6 +34,7 @@ function App() {
     )
       .then((resp) => resp.json())
       .then((data) => {
+        initialMatchData.current = data;
         setMatches(data);
       });
   }, []);
@@ -93,6 +79,10 @@ function App() {
         },
       });
     }
+    setScenario({
+      title: "Custom",
+      matchData: initialMatchData.current,
+    });
     setMatches({
       ...matches,
       [match]: {
@@ -100,6 +90,29 @@ function App() {
         win: winner,
       },
     });
+  };
+
+  const scenarios = useMemo(
+    () => getScenarios(initialMatchData.current, initialTable.current),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [initialMatchData.current, initialTable.current]
+  );
+  const scenariosWithCustom = [
+    ...scenarios,
+    { title: "Custom", matchData: initialMatchData.current },
+  ];
+
+  const updateScenario = (value) => {
+    const selectedScenario = scenariosWithCustom.filter(
+      (s) => s.title === value
+    );
+    if (selectedScenario.length > 0) {
+      const matchData = selectedScenario[0].matchData;
+      setMatches(matchData);
+      setScenario(selectedScenario[0]);
+      const updatedTable = getUpdatedTable(matchData, initialTable.current);
+      setTable(updatedTable);
+    }
   };
 
   const sortedTable = Object.keys(table).sort((t1, t2) => {
@@ -113,26 +126,42 @@ function App() {
   return (
     <>
       <h1 className="header">IPL Points Table Scenarios Calculator</h1>
-      <div className="table-header">
-        <div>#</div>
-        <div>Team</div>
-        <div>PLD</div>
-        <div>WON</div>
-        <div>LOST</div>
-        <div>N/R</div>
-        <div>PTS</div>
-        <div>NET RR</div>
-      </div>
-      {sortedTable.map((team, i) => (
-        <TableRow position={i + 1} team={team} {...table[team]} />
-      ))}
-      <h3 className="sub-header">
-        Choose the winning team to see the table change accordingly.
-      </h3>
-      <div className="game-container">
-        {Object.keys(matches).map((match) => (
-          <Game match={match} selectWinner={selectWinner} {...matches[match]} />
+      <div className="table-container">
+        <div className="table-header">
+          <div></div>
+          <div></div>
+          <div>Pld</div>
+          <div>Won</div>
+          <div>Lost</div>
+          <div>PTS</div>
+          <div>NRR</div>
+        </div>
+        {sortedTable.map((team, i) => (
+          <TableRow position={i + 1} team={team} {...table[team]} />
         ))}
+      </div>
+      <h3 className="sub-header">
+        Choose the winning team to see the table change accordingly or choose a
+        popular outcomes on the right.
+      </h3>
+      <div className="game-and-scenario">
+        <div className="game-container">
+          {Object.keys(matches).map((match) => (
+            <Game
+              match={match}
+              selectWinner={selectWinner}
+              {...matches[match]}
+            />
+          ))}
+        </div>
+        <div className="scenarios">
+          <h3 className="sub-header">Popular Outcomes</h3>
+          <Scenario
+            updateScenario={updateScenario}
+            scenarios={scenariosWithCustom}
+            currentScenario={currentScenario}
+          />
+        </div>
       </div>
       <div className="footer">
         Made by a RCB fan with ❤️ and 😰. Report any issues/feedback{" "}
