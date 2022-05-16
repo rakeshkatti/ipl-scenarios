@@ -1,7 +1,7 @@
 import React from "react";
 import { Radio } from "antd";
 
-export const Game = ({ t1, t2, win, match, selectWinner }) => {
+export const Game = ({ t1, t2, win, match, selectWinner, note }) => {
   const onChange = (e) => {
     selectWinner(match, e.target.value);
   };
@@ -17,6 +17,7 @@ export const Game = ({ t1, t2, win, match, selectWinner }) => {
         <Radio.Button value={t1}>{t1.toUpperCase()}</Radio.Button>
         <Radio.Button value={t2}>{t2.toUpperCase()}</Radio.Button>
       </Radio.Group>
+      <div className="note">{note}</div>
     </div>
   );
 };

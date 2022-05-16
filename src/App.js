@@ -142,7 +142,7 @@ function App() {
       </div>
       <h3 className="sub-header">
         Choose the winning team to see the table change accordingly or choose a
-        possible outcome on the right.
+        popular outcomes on the right.
       </h3>
       <div className="game-and-scenario">
         <div className="game-container">
@@ -155,17 +155,13 @@ function App() {
           ))}
         </div>
         <div className="scenarios">
-          <h3 className="sub-header">{scenarios.length} Possible Outcomes</h3>
+          <h3 className="sub-header">Popular Outcomes</h3>
           <Scenario
             updateScenario={updateScenario}
             scenarios={scenariosWithCustom}
             currentScenario={currentScenario}
           />
         </div>
-      </div>
-      <div className="disclaimer">
-        NOTE: We have considered current NRR for these outcomes. There are few
-        other scenarios if a team wins bigger margins.{" "}
       </div>
       <div className="footer">
         Made by a RCB fan with ❤️ and 😰. Report any issues/feedback{" "}
