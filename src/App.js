@@ -142,7 +142,7 @@ function App() {
       </div>
       <h3 className="sub-header">
         Choose the winning team to see the table change accordingly or choose a
-        popular outcomes on the right.
+        possible outcomes on the right.
       </h3>
       <div className="game-and-scenario">
         <div className="game-container">
@@ -155,7 +155,7 @@ function App() {
           ))}
         </div>
         <div className="scenarios">
-          <h3 className="sub-header">Popular outcomes for the 4th team</h3>
+          <h3 className="sub-header">Possible outcomes for the 4th team</h3>
           <Scenario
             updateScenario={updateScenario}
             scenarios={scenariosWithCustom}
