@@ -26,19 +26,6 @@ export const getUpdatedTable = (matches, initialTable) => {
   return clonedTable;
 };
 
-const getTop4 = (matchData, initialTable) => {
-  const updatedTable = getUpdatedTable(matchData, initialTable);
-  const sortedTable = Object.keys(updatedTable).sort((t1, t2) => {
-    const a = updatedTable[t1];
-    const b = updatedTable[t2];
-    if (a.p === b.p) {
-      return parseFloat(b.nrr) - parseFloat(a.nrr);
-    }
-    return b.p - a.p;
-  });
-  return sortedTable.slice(0, 4).join("-");
-};
-
 const makeScenario = (title, matches, required) => {
   const result = { title };
   const matchData = {};
