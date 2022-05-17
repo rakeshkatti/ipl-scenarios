@@ -65,6 +65,7 @@ export const getScenarios = (matches) => {
     makeScenario("PBKS with NRR", matches, {
       66: "lsg",
       67: "gt",
+      69: "mi",
       70: "pbks",
     }),
     makeScenario("SRH with NRR", matches, {
