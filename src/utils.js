@@ -53,12 +53,6 @@ export const getScenarios = (matches) => {
       67: "rcb",
       69: "mi",
     }),
-    makeScenario("KKR with NRR", matches, {
-      67: "gt",
-      66: "kkr",
-      69: "mi",
-      70: "srh",
-    }),
     makeScenario("DC", matches, {
       69: "dc",
     }),
