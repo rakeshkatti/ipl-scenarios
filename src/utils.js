@@ -50,24 +50,10 @@ const makeScenario = (title, matches, required) => {
 export const getScenarios = (matches) => {
   return [
     makeScenario("RCB", matches, {
-      67: "rcb",
       69: "mi",
     }),
     makeScenario("DC", matches, {
       69: "dc",
-    }),
-    makeScenario("PBKS with NRR", matches, {
-      66: "lsg",
-      67: "gt",
-      69: "mi",
-      70: "pbks",
-    }),
-    makeScenario("SRH with NRR", matches, {
-      65: "srh",
-      66: "lsg",
-      67: "gt",
-      69: "mi",
-      70: "srh",
     }),
   ];
   //   const scenarios = new Set();
