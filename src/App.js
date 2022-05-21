@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import "antd/dist/antd.css";
 import "./App.css";
 import React, { useState, useEffect, useRef, useMemo } from "react";
@@ -129,6 +130,22 @@ function App() {
   return (
     <>
       <h1 className="header">IPL Points Table Scenarios Calculator</h1>
+      <h3 className="sub-header">
+        Thank you for using this microsite. We got 16000+ page visits in final
+        two weeks of IPL 2022. See you again next IPL.
+      </h3>
+      <h3>
+        Do follow for other experiments.
+        <a
+          href="https://twitter.com/rakesh_katti?ref_src=twsrc%5Etfw"
+          class="twitter-follow-button"
+          data-show-screen-name="false"
+          data-show-count="false"
+        >
+          Follow @rakesh_katti
+        </a>
+      </h3>
+
       <div className="table-container">
         <div className="table-header">
           <div></div>
@@ -143,11 +160,7 @@ function App() {
           <TableRow position={i + 1} team={team} {...table[team]} />
         ))}
       </div>
-      <h3 className="sub-header">
-        Choose the winning team to see the table change accordingly or choose a
-        possible outcomes on the right.
-      </h3>
-      <div className="game-and-scenario">
+      {/* <div className="game-and-scenario">
         <div className="game-container">
           {Object.keys(matches).map((match) => (
             <Game
@@ -165,7 +178,7 @@ function App() {
             currentScenario={currentScenario}
           />
         </div>
-      </div>
+      </div> */}
       <div className="footer">
         Made by a RCB fan with ❤️ and 😰. Report any issues/feedback{" "}
         <a href="https://twitter.com/rakesh_katti">@rakesh_katti</a>{" "}
