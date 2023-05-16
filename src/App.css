@@ -1,107 +1,111 @@
 body {
-  background: #213885;
+	background: #213885;
 }
 
 .qualified {
-  color: #3bcf5a;
-  font-size: 1rem;
+	color: #3bcf5a;
+	font-size: 1rem;
 }
 
 .eliminated {
-  color: red;
-  font-size: 1rem;
+	color: red;
+	font-size: 1rem;
 }
 
 .table-header {
-  color: white;
-  font-weight: bold;
-  display: flex;
-  margin: 10px;
-  padding: 5px 20px;
-  border-radius: 0.2rem;
+	color: white;
+	font-weight: bold;
+	display: flex;
+	margin: 10px;
+	padding: 5px 20px;
+	border-radius: 0.2rem;
 }
 
 .table-row {
-  color: #181847;
-  font-weight: bold;
-  display: flex;
-  margin: 10px;
-  background: #fff;
-  padding: 5px 20px;
-  border-radius: 0.2rem;
+	color: #181847;
+	font-weight: bold;
+	display: flex;
+	margin: 10px;
+	background: #fff;
+	padding: 5px 20px;
+	border-radius: 0.2rem;
 }
 
 .table-row div,
 .table-header div {
-  flex: 1;
+	flex: 1;
 }
 
 .game-container > div {
-  width: 48%;
-  text-align: center;
-  padding: 0.7rem;
-  font-weight: bold;
-  background: white;
-  border-radius: 0.2rem;
-  margin: 0.1rem;
+	width: 48%;
+	text-align: center;
+	padding: 0.7rem;
+	font-weight: bold;
+	background: white;
+	border-radius: 0.2rem;
+	margin: 0.1rem;
 }
 
 .header {
-  padding-top: 10px;
-  text-align: center;
-  color: #fff;
+	padding-top: 10px;
+	text-align: center;
+	color: #fff;
 }
 
 h3 {
-  padding: 5px 15px;
-  color: #fff;
+	padding: 5px 15px;
+	color: #fff;
 }
 
 .match-number {
-  font-weight: 400;
-  font-size: 0.8rem;
+	font-weight: 400;
+	font-size: 0.8rem;
 }
 
 .footer {
-  text-align: center;
-  color: #ccc;
-  padding: 2rem 0.4rem 1rem;
+	text-align: center;
+	color: #ccc;
+	padding: 2rem 0.4rem 1rem;
 }
 
 .scenarios {
-  text-align: center;
+	text-align: center;
 }
 
 .scenario {
-  padding-top: 10px;
+	padding-top: 10px;
 }
 
 .game-and-scenario {
-  display: flex;
-  padding: 5px 15px;
+	display: flex;
+	padding: 5px 15px;
 }
 .game-and-scenario div {
-  width: 100%;
+	/* width: 100%; */
 }
 
 .game-container {
-  width: 100%;
-  text-align: center;
+	width: 100%;
+	text-align: center;
 }
 
 .disclaimer {
-  padding: 1rem;
-  color: red;
-  background-color: rgba(255, 255, 255, 0.2);
-  font-weight: bold;
+	padding: 1rem;
+	color: red;
+	background-color: rgba(255, 255, 255, 0.2);
+	font-weight: bold;
 }
 
 .note {
-  font-weight: 400;
-  font-size: 0.8rem;
-  color: red;
+	font-weight: 400;
+	font-size: 0.8rem;
+	color: red;
 }
 
 .twitter-follow-button {
-  margin-left: 20px;
+	margin-left: 20px;
+}
+
+.match {
+	float: left;
 }
