@@ -82,7 +82,6 @@ export const tabularData = {
 };
 
 export const matchData = {
-	65: { t1: "srh", t2: "rcb", win: "" },
 	66: { t1: "pbks", t2: "rr", win: "" },
 	67: { t1: "dc", t2: "csk", win: "" },
 	68: { t1: "kkr", t2: "lsg", win: "" },
