@@ -23,6 +23,14 @@ export const tabularData = {
 		nrr: 0.304,
 		p: 15,
 	},
+	rcb: {
+		m: 13,
+		w: 7,
+		l: 6,
+		nr: 0,
+		nrr: 0.18,
+		p: 14,
+	},
 	mi: {
 		m: 13,
 		w: 7,
@@ -30,14 +38,6 @@ export const tabularData = {
 		nr: 0,
 		nrr: -0.128,
 		p: 14,
-	},
-	rcb: {
-		m: 12,
-		w: 6,
-		l: 6,
-		nr: 0,
-		nrr: 0.166,
-		p: 12,
 	},
 	rr: {
 		m: 13,
@@ -72,11 +72,11 @@ export const tabularData = {
 		p: 10,
 	},
 	srh: {
-		m: 12,
+		m: 13,
 		w: 4,
-		l: 8,
+		l: 9,
 		nr: 0,
-		nrr: -0.575,
+		nrr: -0.558,
 		p: 8,
 	},
 };
