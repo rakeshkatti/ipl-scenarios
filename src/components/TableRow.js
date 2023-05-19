@@ -1,7 +1,7 @@
 import React from "react";
 
 const qualifiedTeams = ["gt"];
-const eliminatedTeams = ["dc", "srh"];
+const eliminatedTeams = ["dc", "srh", "pbks"];
 const getPosition = (team, position) => {
 	if (eliminatedTeams.includes(team)) {
 		return <span className="eliminated">E</span>;
@@ -21,6 +21,7 @@ export const TableRow = ({ team, m, w, l, p, nr, nrr, position }) => {
 			<div>{m}</div>
 			<div>{w}</div>
 			<div>{l}</div>
+			<div>{nr}</div>
 			<div>{p}</div>
 			<div>{formattedNRR}</div>
 		</div>
