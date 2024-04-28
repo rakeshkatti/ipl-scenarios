@@ -16,11 +16,11 @@ export const tabularData = {
 		p: 10,
 	},
 	srh: {
-		m: 8,
+		m: 9,
 		w: 5,
-		l: 3,
+		l: 4,
 		nr: 0,
-		nrr: 0.577,
+		nrr: 0.075,
 		p: 10,
 	},
 	lsg: {
@@ -40,12 +40,12 @@ export const tabularData = {
 		p: 10,
 	},
 	csk: {
-		m: 8,
-		w: 4,
+		m: 9,
+		w: 5,
 		l: 4,
 		nr: 0,
-		nrr: 0.415,
-		p: 8,
+		nrr: 0.81,
+		p: 10,
 	},
 	gt: {
 		m: 10,
@@ -82,7 +82,6 @@ export const tabularData = {
 };
 
 export const matchData = {
-	46: { t1: "csk", t2: "srh", win: "" },
 	47: { t1: "kkr", t2: "dc", win: "" },
 	48: { t1: "lsg", t2: "mi", win: "" },
 	49: { t1: "csk", t2: "pbks", win: "" },
