@@ -130,7 +130,7 @@ function App() {
 	});
 	return (
 		<>
-			<h1 className="header">IPL Points Table Scenarios Calculator</h1>
+			<h2 className="header">IPL 2024 Points Table Scenarios Calculator</h2>
 
 			<div className="table-container">
 				<div className="table-header">
@@ -167,8 +167,8 @@ function App() {
 				</div> */}
 			</div>
 			<div className="footer">
-				Made by a RCB fan with ❤️ and 😰. Report any issues/feedback{" "}
-				<a href="https://twitter.com/rakesh_katti">@rakesh_katti</a>{" "}
+				Made by a RCB fan with ❤️ and 😰 in 2022. Report any issues/feedback{" "}
+				<a href="https://twitter.com/rakesh_katti">@rakesh_katti</a>
 			</div>
 		</>
 	);
