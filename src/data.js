@@ -104,8 +104,4 @@ export const matchData = {
 	68: { t1: "rcb", t2: "csk", win: "" },
 	69: { t1: "srh", t2: "pbks", win: "" },
 	70: { t1: "rr", t2: "kkr", win: "" },
-	71: { t1: "TBC", t2: "TBC", win: "" }, // Qualifier 1
-	72: { t1: "TBC", t2: "TBC", win: "" }, // Eliminator
-	73: { t1: "TBC", t2: "TBC", win: "" }, // Qualifier 2
-	74: { t1: "TBC", t2: "TBC", win: "" }, // Final
 };
