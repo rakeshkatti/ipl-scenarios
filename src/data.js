@@ -1,10 +1,10 @@
 export const tabularData = {
 	rr: {
-		m: 9,
+		m: 10,
 		w: 8,
-		l: 1,
+		l: 2,
 		nr: 0,
-		nrr: 0.694,
+		nrr: 0.622,
 		p: 16,
 	},
 	kkr: {
@@ -16,12 +16,12 @@ export const tabularData = {
 		p: 12,
 	},
 	srh: {
-		m: 9,
-		w: 5,
+		m: 10,
+		w: 6,
 		l: 4,
 		nr: 0,
-		nrr: 0.075,
-		p: 10,
+		nrr: 0.072,
+		p: 12,
 	},
 	lsg: {
 		m: 10,
