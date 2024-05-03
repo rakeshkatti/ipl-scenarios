@@ -56,6 +56,7 @@ function App() {
 			// Reset form after successful submission
 			form.resetFields();
 			sessionStorage.setItem("feedbackSubmitted", "true");
+			handleOk();
 		} catch (error) {
 			console.error("Submission Failed:", error.message);
 			message.error("Failed to submit feedback");
