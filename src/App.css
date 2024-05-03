@@ -109,3 +109,16 @@ h3 {
 .match {
 	float: left;
 }
+
+.ant-modal-header {
+	background-color: #1a2e70; /* A darker shade of blue for the header */
+	color: white; /* White text in the header */
+}
+
+/* Ensure all possible text elements are covered */
+.ant-modal-title,
+.ant-modal-close-x,
+.ant-input,
+.ant-select-selector {
+	color: white; /* Explicit white text for elements within the modal */
+}

@@ -7,6 +7,8 @@ import { Scenario } from "./components/Scenario";
 import { TableRow } from "./components/TableRow";
 import { getUpdatedTable, getScenarios } from "./utils";
 import { tabularData, matchData } from "./data";
+import { Modal, Button, Form, Input, Select, message } from "antd";
+import supabase from "./supabaseClient";
 
 function App() {
 	const [table, setTable] = useState(tabularData);
@@ -14,32 +16,62 @@ function App() {
 	const [currentScenario, setScenario] = useState({
 		title: "Custom",
 	});
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const showModal = () => {
+		setIsModalOpen(true);
+	};
+	const handleOk = () => {
+		setIsModalOpen(false);
+	};
+	const handleCancel = () => {
+		setIsModalOpen(false);
+	};
+
+	const [form] = Form.useForm();
+
+	const handleSubmit = async () => {
+		try {
+			// Validate only the necessary fields
+			await form.validateFields();
+			const values = form.getFieldsValue();
+
+			console.log("Received values of form: ", values);
+
+			// Send the data to Supabase
+			const { data, error } = await supabase.from("user_feedback").insert([
+				{
+					name: values.name, // Optional field, no validation
+					email: values.email, // Required with validation
+					team: values.team, // Required with validation
+					feedback: values.feedback, // Optional field, no validation
+				},
+			]);
+
+			if (error) {
+				throw error;
+			}
+
+			message.success("Feedback submitted successfully!");
+
+			// Reset form after successful submission
+			form.resetFields();
+			sessionStorage.setItem("feedbackSubmitted", "true");
+		} catch (error) {
+			console.error("Submission Failed:", error.message);
+			message.error("Failed to submit feedback");
+		}
+	};
 
 	let initialTable = useRef(table);
 	let initialMatchData = useRef(matches);
-	// useEffect(() => {
-	// 	fetch(
-	// 		"https://raw.githubusercontent.com/alexsanjoseph/ipl-scenario-builder/main/data/current_standings.json",
-	// 		{ cache: "no-store" }
-	// 	)
-	// 		.then((resp) => resp.json())
-	// 		.then((data) => {
-	// 			initialTable.current = data;
-	// 			setTable(initialTable.current);
-	// 		});
-	// }, []);
 
-	// useEffect(() => {
-	// 	fetch(
-	// 		"https://raw.githubusercontent.com/alexsanjoseph/ipl-scenario-builder/main/data/filtered_fixtures.json",
-	// 		{ cache: "no-store" }
-	// 	)
-	// 		.then((resp) => resp.json())
-	// 		.then((data) => {
-	// 			initialMatchData.current = data;
-	// 			setMatches(data);
-	// 		});
-	// }, []);
+	const tableComplete = () => {
+		let count = 0;
+		Object.keys(table).forEach((t) => {
+			if (table[t]["m"] === 14) count++;
+		});
+		return count > 7;
+	};
 
 	const selectWinner = (match, winner) => {
 		const selectedMatch = matches[match];
@@ -92,6 +124,13 @@ function App() {
 				win: winner,
 			},
 		});
+
+		if (tableComplete()) {
+			const feedbackSubmitted = sessionStorage.getItem("feedbackSubmitted");
+			if (!feedbackSubmitted) {
+				setTimeout(() => showModal(), 4000);
+			}
+		}
 	};
 
 	const scenarios = useMemo(
@@ -131,7 +170,56 @@ function App() {
 	return (
 		<>
 			<h2 className="header">IPL 2024 Points Table Scenarios Calculator</h2>
-
+			<Modal
+				title="Thank you for using IPL Scenarios"
+				open={isModalOpen}
+				onOk={handleSubmit}
+				onCancel={() => {
+					handleCancel();
+					form.resetFields(); // Reset form when cancelling
+				}}
+				okText="Submit"
+				cancelText="Cancel"
+			>
+				<Form form={form} layout="vertical">
+					<Form.Item
+						name="team"
+						label="Your Favorite Team"
+						rules={[{ required: true, message: "Please select your team!" }]}
+					>
+						<Select placeholder="Select a team">
+							{Object.keys(table).map((t) => (
+								<Select.Option key={t} value={t}>
+									{t.toUpperCase()}
+								</Select.Option>
+							))}
+						</Select>
+					</Form.Item>
+					<Form.Item requiredMark="optional" name="name" label="Name">
+						<Input />
+					</Form.Item>
+					<Form.Item
+						requiredMark="optional"
+						name="email"
+						label="Email (for updates on new apps)"
+						rules={[
+							{
+								type: "email",
+								message: "Please input a valid email!",
+							},
+						]}
+					>
+						<Input />
+					</Form.Item>
+					<Form.Item
+						requiredMark="optional"
+						name="feedback"
+						label="Feedback or Suggestions for Next League"
+					>
+						<Input.TextArea />
+					</Form.Item>
+				</Form>
+			</Modal>
 			<div className="table-container">
 				<div className="table-header">
 					<div></div>
