@@ -9,6 +9,7 @@ import { getUpdatedTable, getScenarios } from "./utils";
 import { tabularData, matchData } from "./data";
 import { Modal, Button, Form, Input, Select, message } from "antd";
 import supabase from "./supabaseClient";
+import { FormOutlined } from "@ant-design/icons";
 
 function App() {
 	const [table, setTable] = useState(tabularData);
@@ -126,12 +127,12 @@ function App() {
 			},
 		});
 
-		if (tableComplete()) {
-			const feedbackSubmitted = sessionStorage.getItem("feedbackSubmitted");
-			if (!feedbackSubmitted) {
-				setTimeout(() => showModal(), 4000);
-			}
-		}
+		// if (tableComplete()) {
+		// 	const feedbackSubmitted = sessionStorage.getItem("feedbackSubmitted");
+		// 	if (!feedbackSubmitted) {
+		// 		setTimeout(() => showModal(), 4000);
+		// 	}
+		// }
 	};
 
 	const scenarios = useMemo(
@@ -168,6 +169,8 @@ function App() {
 		}
 		return b.p - a.p;
 	});
+
+	const isDesktop = window.innerWidth > 768;
 	return (
 		<>
 			<h2 className="header">IPL 2024 Points Table Scenarios Calculator</h2>
@@ -255,6 +258,19 @@ function App() {
 					/>
 				</div> */}
 			</div>
+			<Button
+				type="primary"
+				onClick={showModal}
+				icon={<FormOutlined />}
+				style={{
+					position: "fixed",
+					right: "20px",
+					bottom: "20px",
+					zIndex: 1000,
+				}}
+			>
+				{isDesktop && "Give Feedback"}
+			</Button>
 			<div className="footer">
 				Made by a RCB fan with ❤️ and 😰 in 2022. Report any issues/feedback{" "}
 				<a href="https://twitter.com/rakesh_katti">@rakesh_katti</a>
