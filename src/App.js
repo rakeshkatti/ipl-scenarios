@@ -33,6 +33,14 @@ function App() {
 
 	const [form] = Form.useForm();
 
+	const resetAll = () => {
+		setSelectedPosition(null);
+		setSelectedTeam(null);
+		setScenario({ title: "Select an outcome" });
+		setTable(tabularData);
+		setMatches(matchData);
+	};
+
 	const handleSubmit = async () => {
 		try {
 			// Validate only the necessary fields
@@ -244,7 +252,12 @@ function App() {
 					<TableRow position={i + 1} team={team} {...table[team]} />
 				))}
 			</div>
-			<div className="sub-header">Possible outcomes at the current NRR.</div>
+			<div className="sub-header">
+				Possible outcomes at the current NRR.{" "}
+				<Button onClick={resetAll} type="danger">
+					RESET ALL
+				</Button>
+			</div>
 			<div className="scenarios-section">
 				<div>
 					Select Team:
@@ -252,6 +265,7 @@ function App() {
 						<Select
 							onChange={(value) => setSelectedTeam(value)}
 							placeholder="Select a team"
+							value={selectedTeam}
 						>
 							{Object.keys(table).map((t) => (
 								<Select.Option key={t} value={t}>
@@ -267,6 +281,7 @@ function App() {
 						<Select
 							onChange={(value) => setSelectedPosition(value)}
 							placeholder="Select a Position"
+							value={selectedPosition}
 						>
 							<Select.Option key={1} value={1}></Select.Option>
 							<Select.Option key={2} value={2}></Select.Option>

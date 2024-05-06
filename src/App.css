@@ -119,4 +119,6 @@ h3 {
 .sub-header {
 	color: white;
 	padding: 1em 1em 0 1.5em;
+	display: flex;
+	justify-content: space-between;
 }
