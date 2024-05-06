@@ -5,7 +5,7 @@ import React, { useState, useEffect, useRef, useMemo } from "react";
 import { Game } from "./components/Game";
 import { Scenario } from "./components/Scenario";
 import { TableRow } from "./components/TableRow";
-import { getUpdatedTable, getScenarios } from "./utils";
+import { getUpdatedTable, getScenarios, filterPossibleOutcomes } from "./utils";
 import { tabularData, matchData } from "./data";
 import { Modal, Button, Form, Input, Select, message } from "antd";
 import supabase from "./supabaseClient";
@@ -20,6 +20,7 @@ function App() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [selectedTeam, setSelectedTeam] = useState(null);
 	const [selectedPosition, setSelectedPosition] = useState(null);
+
 	const showModal = () => {
 		setIsModalOpen(true);
 	};
@@ -139,18 +140,15 @@ function App() {
 		// }
 	};
 
-	let scenarios = useMemo(
-		() =>
-			getScenarios(
-				initialMatchData.current,
-				initialTable.current,
-				selectedTeam,
-				selectedPosition
-			),
-		[selectedPosition, selectedTeam]
-	);
+	const scenarios = useMemo(() => {
+		return getScenarios(initialMatchData.current, initialTable.current);
+	}, []);
+
 	// setScenario(defaultScenario);
-	const scenariosWithCustom = [...scenarios];
+	const scenariosWithCustom =
+		selectedTeam && selectedPosition
+			? filterPossibleOutcomes(scenarios, selectedTeam, selectedPosition)
+			: [];
 
 	const updateScenario = (value) => {
 		const selectedScenario = scenariosWithCustom.filter(
@@ -279,8 +277,10 @@ function App() {
 				</div>
 				{scenarios.length !== 0 ? (
 					<div className="scenarios">
-						Possible outcomes with {selectedTeam.toUpperCase()} at number{" "}
-						{selectedPosition}
+						Possible outcomes -{" "}
+						{selectedTeam && selectedPosition
+							? scenariosWithCustom.length
+							: scenarios.length}
 						<Scenario
 							updateScenario={updateScenario}
 							scenarios={scenariosWithCustom}

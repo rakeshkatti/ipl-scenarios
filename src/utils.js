@@ -60,12 +60,7 @@ const getTop4 = (matchData, initialTable) => {
 	return sortedTable.slice(0, 4).join("-");
 };
 
-export const getScenarios = (
-	matches,
-	initialTable,
-	selectedTeam,
-	selectedPosition
-) => {
+export const getScenarios = (matches, initialTable) => {
 	// return [
 	// 	makeScenario("RCB", matches, {
 	// 		67: "rcb",
@@ -117,10 +112,18 @@ export const getScenarios = (
 		getPossibleOutComes({}, matchKeys, 0);
 		return possibleScenarios
 			.map((value) => ({ value, sort: Math.random() }))
-			.sort((a, b) => a.sort - b.sort)
-			.map(({ value }) => value)
-			.filter((m) => m.title.split("-")[selectedPosition - 1] === selectedTeam);
+			.map(({ value }) => value);
 	}
 
 	//   return [];
+};
+
+export const filterPossibleOutcomes = (
+	scenarios,
+	selectedTeam,
+	selectedPosition
+) => {
+	return scenarios.filter(
+		(m) => m.title.split("-")[selectedPosition - 1] === selectedTeam
+	);
 };
