@@ -15,9 +15,11 @@ function App() {
 	const [table, setTable] = useState(tabularData);
 	const [matches, setMatches] = useState(matchData);
 	const [currentScenario, setScenario] = useState({
-		title: "Custom",
+		title: "Select an outcome",
 	});
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [selectedTeam, setSelectedTeam] = useState(null);
+	const [selectedPosition, setSelectedPosition] = useState(null);
 	const showModal = () => {
 		setIsModalOpen(true);
 	};
@@ -119,6 +121,8 @@ function App() {
 			title: "Custom",
 			matchData: initialMatchData.current,
 		});
+		// setSelectedTeam(null);
+		// setSelectedPosition(null);
 		setMatches({
 			...matches,
 			[match]: {
@@ -135,15 +139,18 @@ function App() {
 		// }
 	};
 
-	const scenarios = useMemo(
-		() => getScenarios(initialMatchData.current, initialTable.current),
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-		[initialMatchData.current, initialTable.current]
+	let scenarios = useMemo(
+		() =>
+			getScenarios(
+				initialMatchData.current,
+				initialTable.current,
+				selectedTeam,
+				selectedPosition
+			),
+		[selectedPosition, selectedTeam]
 	);
-	const scenariosWithCustom = [
-		...scenarios,
-		{ title: "Custom", matchData: initialMatchData.current },
-	];
+	// setScenario(defaultScenario);
+	const scenariosWithCustom = [...scenarios];
 
 	const updateScenario = (value) => {
 		const selectedScenario = scenariosWithCustom.filter(
@@ -239,6 +246,52 @@ function App() {
 					<TableRow position={i + 1} team={team} {...table[team]} />
 				))}
 			</div>
+			<div className="sub-header">Possible outcomes at the current NRR.</div>
+			<div className="scenarios-section">
+				<div>
+					Select Team:
+					<Form.Item>
+						<Select
+							onChange={(value) => setSelectedTeam(value)}
+							placeholder="Select a team"
+						>
+							{Object.keys(table).map((t) => (
+								<Select.Option key={t} value={t}>
+									{t.toUpperCase()}
+								</Select.Option>
+							))}
+						</Select>
+					</Form.Item>
+				</div>
+				<div>
+					Select Position:
+					<Form.Item>
+						<Select
+							onChange={(value) => setSelectedPosition(value)}
+							placeholder="Select a Position"
+						>
+							<Select.Option key={1} value={1}></Select.Option>
+							<Select.Option key={2} value={2}></Select.Option>
+							<Select.Option key={3} value={3}></Select.Option>
+							<Select.Option key={4} value={4}></Select.Option>
+						</Select>
+					</Form.Item>
+				</div>
+				{scenarios.length !== 0 ? (
+					<div className="scenarios">
+						Possible outcomes with {selectedTeam.toUpperCase()} at number{" "}
+						{selectedPosition}
+						<Scenario
+							updateScenario={updateScenario}
+							scenarios={scenariosWithCustom}
+							currentScenario={currentScenario}
+						/>
+					</div>
+				) : (
+					<div className="scenarios">No possible outcomes</div>
+				)}
+			</div>
+
 			<div className="game-and-scenario">
 				<div className="game-container">
 					{Object.keys(matches).map((match) => (
@@ -249,14 +302,6 @@ function App() {
 						/>
 					))}
 				</div>
-				{/* <div className="scenarios">
-					<h3 className="sub-header">Possible outcomes for the 4th team</h3>
-					<Scenario
-						updateScenario={updateScenario}
-						scenarios={scenariosWithCustom}
-						currentScenario={currentScenario}
-					/>
-				</div> */}
 			</div>
 			<Button
 				type="primary"

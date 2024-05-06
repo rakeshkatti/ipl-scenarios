@@ -69,7 +69,6 @@ h3 {
 }
 
 .scenarios {
-	text-align: center;
 }
 
 .scenario {
@@ -108,4 +107,16 @@ h3 {
 
 .match {
 	float: left;
+}
+
+.scenarios-section {
+	background-color: #fff;
+	padding: 5px 15px;
+	margin: 1rem;
+	border-radius: 0.2rem;
+}
+
+.sub-header {
+	color: white;
+	padding: 1em 1em 0 1.5em;
 }
