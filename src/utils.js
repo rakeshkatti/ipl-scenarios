@@ -26,26 +26,26 @@ export const getUpdatedTable = (matches, initialTable) => {
 	return clonedTable;
 };
 
-const makeScenario = (title, matches, required) => {
-	const result = { title };
-	const matchData = {};
-	for (let key in matches) {
-		if (key in required) {
-			matchData[key] = {
-				...matches[key],
-				win: required[key],
-			};
-		} else {
-			matchData[key] = {
-				...matches[key],
-				win: matches[key][`t${Math.floor(Math.random() * 2) + 1}`],
-				note: "Doesn't matter",
-			};
-		}
-	}
-	result.matchData = matchData;
-	return result;
-};
+// const makeScenario = (title, matches, required) => {
+// 	const result = { title };
+// 	const matchData = {};
+// 	for (let key in matches) {
+// 		if (key in required) {
+// 			matchData[key] = {
+// 				...matches[key],
+// 				win: required[key],
+// 			};
+// 		} else {
+// 			matchData[key] = {
+// 				...matches[key],
+// 				win: matches[key][`t${Math.floor(Math.random() * 2) + 1}`],
+// 				note: "Doesn't matter",
+// 			};
+// 		}
+// 	}
+// 	result.matchData = matchData;
+// 	return result;
+// };
 
 const getTop4 = (matchData, initialTable) => {
 	const updatedTable = getUpdatedTable(matchData, initialTable);
