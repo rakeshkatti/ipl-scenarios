@@ -244,7 +244,7 @@ function App() {
 					<div>Pld</div>
 					<div>Won</div>
 					<div>Lost</div>
-					<div>NR</div>
+					{/* <div>NR</div> */}
 					<div>PTS</div>
 					<div>NRR</div>
 				</div>
