@@ -86,6 +86,16 @@ function App() {
 		return count > 7;
 	};
 
+	const updateNRR = (match, runs, balls) => {
+		const mData = matches[match];
+		const winner = mData.win;
+		const loser = mData.t1 === winner ? mData.t2 : mData.t1;
+		const winData = table[winner];
+		const losData = table[loser];
+		// const winNrr = (winData.runs_scored + runs - winData.)
+		debugger;
+	};
+
 	const selectWinner = (match, winner) => {
 		const selectedMatch = matches[match];
 		const team1 = selectedMatch.t1;
@@ -313,6 +323,7 @@ function App() {
 						<Game
 							match={match}
 							selectWinner={selectWinner}
+							updateNRR={updateNRR}
 							{...matches[match]}
 						/>
 					))}

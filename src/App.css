@@ -37,7 +37,7 @@ body {
 }
 
 .game-container > div {
-	width: 48%;
+	width: 100%;
 	text-align: center;
 	padding: 0.7rem;
 	font-weight: bold;
