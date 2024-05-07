@@ -1,6 +1,6 @@
 export const tabularData = {
 	rr: { m: 10, w: 8, l: 2, nr: 0, nrr: 0.622, p: 16 },
-	kkr: { m: 11, w: 8, l: 2, nr: 0, nrr: 1.453, p: 16 },
+	kkr: { m: 11, w: 8, l: 3, nr: 0, nrr: 1.453, p: 16 },
 	srh: { m: 11, w: 6, l: 5, nr: 0, nrr: -0.065, p: 12 },
 	lsg: { m: 11, w: 6, l: 5, nr: 0, nrr: -0.371, p: 12 },
 	dc: { m: 11, w: 5, l: 6, nr: 0, nrr: -0.442, p: 10 },
