@@ -6,13 +6,12 @@ export const tabularData = {
 	dc: { m: 12, w: 6, l: 6, nr: 0, nrr: -0.316, p: 12 },
 	csk: { m: 11, w: 6, l: 5, nr: 0, nrr: 0.7, p: 12 },
 	gt: { m: 11, w: 4, l: 7, nr: 0, nrr: -1.32, p: 8 },
-	pbks: { m: 11, w: 4, l: 7, nr: 0, nrr: -0.187, p: 8 },
+	pbks: { m: 12, w: 4, l: 8, nr: 0, nrr: -0.423, p: 8 },
 	mi: { m: 12, w: 4, l: 8, nr: 0, nrr: -0.212, p: 8 },
-	rcb: { m: 11, w: 4, l: 7, nr: 0, nrr: -0.049, p: 8 },
+	rcb: { m: 12, w: 5, l: 7, nr: 0, nrr: 0.217, p: 10 },
 };
 
 export const matchData = {
-	58: { t1: "pbks", t2: "rcb", win: "" },
 	59: { t1: "gt", t2: "csk", win: "" },
 	60: { t1: "kkr", t2: "mi", win: "" },
 	61: { t1: "csk", t2: "rr", win: "" },
