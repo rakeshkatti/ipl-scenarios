@@ -3,9 +3,6 @@ import { Modal, Form, Input, Select, message } from "antd";
 import supabase from "../supabaseClient";
 
 const FeedbackModal = ({ isModalOpen, setIsModalOpen, table }) => {
-	const showModal = () => {
-		setIsModalOpen(true);
-	};
 	const handleOk = () => {
 		setIsModalOpen(false);
 	};
@@ -22,7 +19,7 @@ const FeedbackModal = ({ isModalOpen, setIsModalOpen, table }) => {
 			console.log("Received values of form: ", values);
 
 			// Send the data to Supabase
-			const { data, error } = await supabase.from("user_feedback").insert([
+			const { error } = await supabase.from("user_feedback").insert([
 				{
 					name: values.name, // Optional field, no validation
 					email: values.email, // Required with validation
