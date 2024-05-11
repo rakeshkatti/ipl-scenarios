@@ -27,8 +27,32 @@
 		</script>
 		<style>
 			.container {
-				max-width: 500px;
-				margin: 0 auto;
+				width: 100%; /* Makes the width adapt to the screen size */
+				max-width: 500px; /* Ensures it does not exceed 500px */
+				margin: 0 auto; /* Centers it horizontally */
+				padding: 20px; /* Optional: Adds some padding inside the container */
+				box-sizing: border-box; /* Ensures padding does not affect the defined width */
+			}
+			/* For tablets */
+			@media (min-width: 768px) {
+				.container {
+					max-width: 80%; /* Allows the container to be a bit wider on tablets */
+				}
+			}
+
+			/* For desktops */
+			@media (min-width: 1024px) {
+				.container {
+					max-width: 800px; /* Increases the max width for larger screens */
+				}
+			}
+
+			/* For large desktops */
+			@media (min-width: 1200px) {
+				.container {
+					max-width: 960px; /* Suitable for larger desktop screens */
+					padding: 20px 40px; /* Increase padding to better use available space */
+				}
 			}
 		</style>
 		<title>IPL Scenarios - IPL Playoff probables calculator</title>

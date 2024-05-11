@@ -71,8 +71,33 @@ h3 {
 .scenarios {
 }
 
+/* Add this to your App.css */
+
+.scenarios-section {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 10px;
+}
+
+@media (min-width: 768px) {
+	/* Adjusts for tablets and desktops */
+	.scenarios-section {
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.scenarios-section > div {
+		flex: 1;
+		margin-right: 20px; /* Adds some spacing between the controls */
+	}
+	.scenarios-section > div:last-child {
+		margin-right: 0; /* Removes margin from the last element */
+	}
+}
+
 .scenario {
-	padding-top: 10px;
+	width: 100%;
 }
 
 .game-and-scenario {
@@ -86,6 +111,20 @@ h3 {
 .game-container {
 	width: 100%;
 	text-align: center;
+}
+
+@media (min-width: 768px) {
+	/* Tablets and above */
+	.game-container > div {
+		width: 32%; /* Shows three games per row instead of two */
+	}
+}
+
+@media (min-width: 1024px) {
+	/* Desktops */
+	.game-container > div {
+		width: 24%; /* Shows four games per row */
+	}
 }
 
 .disclaimer {

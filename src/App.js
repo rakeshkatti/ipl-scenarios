@@ -1,15 +1,15 @@
 /* eslint-disable no-unused-vars */
 import "antd/dist/antd.css";
 import "./App.css";
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useRef, useMemo } from "react";
 import { Game } from "./components/Game";
 import { Scenario } from "./components/Scenario";
 import { TableRow } from "./components/TableRow";
 import { getUpdatedTable, getScenarios, filterPossibleOutcomes } from "./utils";
 import { tabularData, matchData } from "./data";
-import { Modal, Button, Form, Input, Select, message } from "antd";
-import supabase from "./supabaseClient";
+import { Button, Form, Select } from "antd";
 import { FormOutlined } from "@ant-design/icons";
+import FeedbackModal from "./components/FeedbackModal";
 
 function App() {
 	const [table, setTable] = useState(tabularData);
@@ -21,58 +21,12 @@ function App() {
 	const [selectedTeam, setSelectedTeam] = useState(null);
 	const [selectedPosition, setSelectedPosition] = useState(null);
 
-	const showModal = () => {
-		setIsModalOpen(true);
-	};
-	const handleOk = () => {
-		setIsModalOpen(false);
-	};
-	const handleCancel = () => {
-		setIsModalOpen(false);
-	};
-
-	const [form] = Form.useForm();
-
 	const resetAll = () => {
 		setSelectedPosition(null);
 		setSelectedTeam(null);
 		setScenario({ title: "Select an outcome" });
 		setTable(tabularData);
 		setMatches(matchData);
-	};
-
-	const handleSubmit = async () => {
-		try {
-			// Validate only the necessary fields
-			await form.validateFields();
-			const values = form.getFieldsValue();
-
-			console.log("Received values of form: ", values);
-
-			// Send the data to Supabase
-			const { data, error } = await supabase.from("user_feedback").insert([
-				{
-					name: values.name, // Optional field, no validation
-					email: values.email, // Required with validation
-					team: values.team, // Required with validation
-					feedback: values.feedback, // Optional field, no validation
-				},
-			]);
-
-			if (error) {
-				throw error;
-			}
-
-			message.success("Feedback submitted successfully!");
-
-			// Reset form after successful submission
-			form.resetFields();
-			sessionStorage.setItem("feedbackSubmitted", "true");
-			handleOk();
-		} catch (error) {
-			console.error("Submission Failed:", error.message);
-			message.error("Failed to submit feedback");
-		}
 	};
 
 	let initialTable = useRef(table);
@@ -187,56 +141,6 @@ function App() {
 	return (
 		<>
 			<h2 className="header">IPL 2024 Points Table Scenarios Calculator</h2>
-			<Modal
-				title="Thank you for using IPL Scenarios"
-				open={isModalOpen}
-				onOk={handleSubmit}
-				onCancel={() => {
-					handleCancel();
-					form.resetFields(); // Reset form when cancelling
-				}}
-				okText="Submit"
-				cancelText="Cancel"
-			>
-				<Form form={form} layout="vertical">
-					<Form.Item
-						name="team"
-						label="Your Favorite Team"
-						rules={[{ required: true, message: "Please select your team!" }]}
-					>
-						<Select placeholder="Select a team">
-							{Object.keys(table).map((t) => (
-								<Select.Option key={t} value={t}>
-									{t.toUpperCase()}
-								</Select.Option>
-							))}
-						</Select>
-					</Form.Item>
-					<Form.Item requiredMark="optional" name="name" label="Name">
-						<Input />
-					</Form.Item>
-					<Form.Item
-						requiredMark="optional"
-						name="email"
-						label="Email (for updates on new apps)"
-						rules={[
-							{
-								type: "email",
-								message: "Please input a valid email!",
-							},
-						]}
-					>
-						<Input />
-					</Form.Item>
-					<Form.Item
-						requiredMark="optional"
-						name="feedback"
-						label="Feedback or Suggestions for Next League"
-					>
-						<Input.TextArea />
-					</Form.Item>
-				</Form>
-			</Modal>
 			<div className="table-container">
 				<div className="table-header">
 					<div></div>
@@ -259,7 +163,7 @@ function App() {
 				</Button>
 			</div>
 			<div className="scenarios-section">
-				<div>
+				<div className="scenario">
 					Select Team:
 					<Form.Item>
 						<Select
@@ -275,7 +179,7 @@ function App() {
 						</Select>
 					</Form.Item>
 				</div>
-				<div>
+				<div className="scenario">
 					Select Position:
 					<Form.Item>
 						<Select
@@ -290,21 +194,23 @@ function App() {
 						</Select>
 					</Form.Item>
 				</div>
-				{scenarios.length !== 0 ? (
-					<div className="scenarios">
-						Possible outcomes -{" "}
-						{selectedTeam && selectedPosition
-							? scenariosWithCustom.length
-							: scenarios.length}
-						<Scenario
-							updateScenario={updateScenario}
-							scenarios={scenariosWithCustom}
-							currentScenario={currentScenario}
-						/>
-					</div>
-				) : (
-					<div className="scenarios">No possible outcomes</div>
-				)}
+				<div className="scenario">
+					{scenarios.length !== 0 ? (
+						<>
+							Possible outcomes -{" "}
+							{selectedTeam && selectedPosition
+								? scenariosWithCustom.length
+								: scenarios.length}
+							<Scenario
+								updateScenario={updateScenario}
+								scenarios={scenariosWithCustom}
+								currentScenario={currentScenario}
+							/>
+						</>
+					) : (
+						<>No possible outcomes</>
+					)}
+				</div>
 			</div>
 
 			<div className="game-and-scenario">
@@ -320,7 +226,7 @@ function App() {
 			</div>
 			<Button
 				type="primary"
-				onClick={showModal}
+				onClick={() => setIsModalOpen(true)}
 				icon={<FormOutlined />}
 				style={{
 					position: "fixed",
@@ -331,6 +237,11 @@ function App() {
 			>
 				{isDesktop && "Give Feedback"}
 			</Button>
+			<FeedbackModal
+				isModalOpen={isModalOpen}
+				setIsModalOpen={setIsModalOpen}
+				table={table}
+			/>
 			<div className="footer">
 				Made by a RCB fan with ❤️ and 😰 in 2022. Report any issues/feedback{" "}
 				<a href="https://twitter.com/rakesh_katti">@rakesh_katti</a>
