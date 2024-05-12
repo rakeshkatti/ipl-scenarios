@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import "antd/dist/antd.css";
 import "./App.css";
-import React, { useState, useRef, useMemo } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { Game } from "./components/Game";
 import { Scenario } from "./components/Scenario";
 import { TableRow } from "./components/TableRow";
@@ -10,6 +10,7 @@ import { tabularData, matchData } from "./data";
 import { Button, Form, Select } from "antd";
 import { FormOutlined } from "@ant-design/icons";
 import FeedbackModal from "./components/FeedbackModal";
+import cloneDeep from "lodash/cloneDeep";
 
 function calculateNRR(runsScored, oversFaced, runsConceded, oversBowled) {
 	if (oversFaced === 0 || oversBowled === 0) return 0; // Prevent division by zero
@@ -29,34 +30,51 @@ function App() {
 	const [selectedPosition, setSelectedPosition] = useState(null);
 
 	const updateNRR = () => {
-		const updatedTable = { ...table };
-		Object.keys(initialTable.current).forEach((team) => {
-			const teamData = { ...initialTable.current[team] };
-			let { runs_scored, runs_conceded, overs_faced, overs_bowled } = teamData;
+		const updatedTable = cloneDeep(initialTable.current); // Use lodash's cloneDeep to deeply copy the table
+		Object.keys(updatedTable).forEach((team) => {
+			let teamData = updatedTable[team];
+			let runs_scored = teamData.runs_scored;
+			let runs_conceded = teamData.runs_conceded;
+			let overs_faced = teamData.overs_faced;
+			let overs_bowled = teamData.overs_bowled;
+
 			Object.keys(matches).forEach((matchId) => {
 				const mData = matches[matchId];
-				runs_scored += mData.t1 === team ? mData.runsT1 : 0;
-				runs_conceded += mData.t1 === team ? mData.runsT2 : 0;
-				overs_faced += mData.t1 === team ? mData.oversT1 : 0;
-				overs_bowled += mData.t1 === team ? mData.oversT2 : 0;
-				runs_scored += mData.t2 === team ? mData.runsT2 : 0;
-				runs_conceded += mData.t2 === team ? mData.runsT1 : 0;
-				overs_faced += mData.t2 === team ? mData.oversT2 : 0;
-				overs_bowled += mData.t2 === team ? mData.oversT1 : 0;
+				if (mData.t1 === team) {
+					runs_scored += mData.runsT1 || 0;
+					runs_conceded += mData.runsT2 || 0;
+					overs_faced += mData.oversT1 || 0;
+					overs_bowled += mData.oversT2 || 0;
+				}
+				if (mData.t2 === team) {
+					runs_scored += mData.runsT2 || 0;
+					runs_conceded += mData.runsT1 || 0;
+					overs_faced += mData.oversT2 || 0;
+					overs_bowled += mData.oversT1 || 0;
+				}
 			});
-			updatedTable[team].runs_scored = runs_scored;
-			updatedTable[team].runs_conceded = runs_conceded;
-			updatedTable[team].overs_faced = overs_faced;
-			updatedTable[team].overs_bowled = overs_bowled;
-			updatedTable[team].nrr = calculateNRR(
+
+			updatedTable[team] = {
+				...table[team],
 				runs_scored,
-				overs_faced,
 				runs_conceded,
-				overs_bowled
-			);
+				overs_faced,
+				overs_bowled,
+				nrr: calculateNRR(
+					runs_scored,
+					overs_faced,
+					runs_conceded,
+					overs_bowled
+				),
+			};
 		});
+
 		setTable(updatedTable);
 	};
+
+	useEffect(() => {
+		updateNRR(); // Call updateNRR when matches change
+	}, [matches]);
 
 	const resetAll = () => {
 		setSelectedPosition(null);
@@ -75,7 +93,6 @@ function App() {
 				[which]: value,
 			},
 		}));
-		updateNRR();
 	};
 
 	let initialTable = useRef(table);
@@ -170,7 +187,6 @@ function App() {
 		// 		setTimeout(() => showModal(), 4000);
 		// 	}
 		// }
-		updateNRR();
 	};
 
 	const scenarios = useMemo(() => {
@@ -227,7 +243,7 @@ function App() {
 					<TableRow position={i + 1} team={team} {...table[team]} />
 				))}
 			</div>
-			<div className="sub-header">
+			{/* <div className="sub-header">
 				Possible outcomes at the current NRR.{" "}
 				<Button onClick={resetAll} type="danger">
 					RESET ALL
@@ -282,7 +298,7 @@ function App() {
 						<>No possible outcomes</>
 					)}
 				</div>
-			</div>
+			</div> */}
 
 			<div className="game-and-scenario">
 				<div className="gamecontainer">
