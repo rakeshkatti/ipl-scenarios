@@ -11,6 +11,13 @@ import { Button, Form, Select } from "antd";
 import { FormOutlined } from "@ant-design/icons";
 import FeedbackModal from "./components/FeedbackModal";
 
+function calculateNRR(runsScored, oversFaced, runsConceded, oversBowled) {
+	if (oversFaced === 0 || oversBowled === 0) return 0; // Prevent division by zero
+	const runRate = runsScored / oversFaced;
+	const runRateConceded = runsConceded / oversBowled;
+	return parseFloat((runRate - runRateConceded).toFixed(3));
+}
+
 function App() {
 	const [table, setTable] = useState(tabularData);
 	const [matches, setMatches] = useState(matchData);
@@ -21,6 +28,36 @@ function App() {
 	const [selectedTeam, setSelectedTeam] = useState(null);
 	const [selectedPosition, setSelectedPosition] = useState(null);
 
+	const updateNRR = () => {
+		const updatedTable = { ...table };
+		Object.keys(initialTable.current).forEach((team) => {
+			const teamData = { ...initialTable.current[team] };
+			let { runs_scored, runs_conceded, overs_faced, overs_bowled } = teamData;
+			Object.keys(matches).forEach((matchId) => {
+				const mData = matches[matchId];
+				runs_scored += mData.t1 === team ? mData.runsT1 : 0;
+				runs_conceded += mData.t1 === team ? mData.runsT2 : 0;
+				overs_faced += mData.t1 === team ? mData.oversT1 : 0;
+				overs_bowled += mData.t1 === team ? mData.oversT2 : 0;
+				runs_scored += mData.t2 === team ? mData.runsT2 : 0;
+				runs_conceded += mData.t2 === team ? mData.runsT1 : 0;
+				overs_faced += mData.t2 === team ? mData.oversT2 : 0;
+				overs_bowled += mData.t2 === team ? mData.oversT1 : 0;
+			});
+			updatedTable[team].runs_scored = runs_scored;
+			updatedTable[team].runs_conceded = runs_conceded;
+			updatedTable[team].overs_faced = overs_faced;
+			updatedTable[team].overs_bowled = overs_bowled;
+			updatedTable[team].nrr = calculateNRR(
+				runs_scored,
+				overs_faced,
+				runs_conceded,
+				overs_bowled
+			);
+		});
+		setTable(updatedTable);
+	};
+
 	const resetAll = () => {
 		setSelectedPosition(null);
 		setSelectedTeam(null);
@@ -29,16 +66,29 @@ function App() {
 		setMatches(matchData);
 	};
 
+	// Function to handle changes in runs or overs
+	const handleRunsOversChange = (matchId, which, value) => {
+		setMatches((prev) => ({
+			...prev,
+			[matchId]: {
+				...prev[matchId],
+				[which]: value,
+			},
+		}));
+		updateNRR();
+	};
+
 	let initialTable = useRef(table);
 	let initialMatchData = useRef(matches);
 
-	const tableComplete = () => {
-		let count = 0;
-		Object.keys(table).forEach((t) => {
-			if (table[t]["m"] === 14) count++;
-		});
-		return count > 7;
-	};
+	// const tableComplete = () => {
+	// 	let count = 0;
+	// 	Object.keys(table).forEach((t) => {
+	// 		if (table[t]["m"] === 14) count++;
+	// 	});
+	// 	return count > 7;
+	// };
+	// Update team statistics in table
 
 	const selectWinner = (match, winner) => {
 		const selectedMatch = matches[match];
@@ -46,8 +96,24 @@ function App() {
 		const team2 = selectedMatch.t2;
 		const winningTeam = winner;
 		const losingTeam = winner === team1 ? team2 : team1;
+
+		// Generate random runs for both teams
+		const runsForWinningTeam = Math.floor(Math.random() * 101) + 150; // 150 to 250
+		const runsForLosingTeam = Math.floor(Math.random() * 101) + 150; // 150 to 250
+
 		const winningTeamRow = table[winningTeam];
 		const losingTeamRow = table[losingTeam];
+
+		// Ensure winning team has more runs
+		const runsT1 =
+			winningTeam === team1
+				? Math.max(runsForWinningTeam, runsForLosingTeam + 1)
+				: Math.min(runsForWinningTeam, runsForLosingTeam - 1);
+		const runsT2 =
+			winningTeam === team2
+				? Math.max(runsForWinningTeam, runsForLosingTeam + 1)
+				: Math.min(runsForWinningTeam, runsForLosingTeam - 1);
+
 		if (selectedMatch.win === "") {
 			setTable({
 				...table,
@@ -91,6 +157,10 @@ function App() {
 			[match]: {
 				...selectedMatch,
 				win: winner,
+				runsT1,
+				runsT2,
+				oversT1: 20, // Default overs
+				oversT2: 20,
 			},
 		});
 
@@ -100,6 +170,7 @@ function App() {
 		// 		setTimeout(() => showModal(), 4000);
 		// 	}
 		// }
+		updateNRR();
 	};
 
 	const scenarios = useMemo(() => {
@@ -214,12 +285,22 @@ function App() {
 			</div>
 
 			<div className="game-and-scenario">
-				<div className="game-container">
-					{Object.keys(matches).map((match) => (
+				<div className="gamecontainer">
+					{Object.keys(matches).map((matchId) => (
 						<Game
-							match={match}
-							selectWinner={selectWinner}
-							{...matches[match]}
+							match={matchId}
+							key={matchId}
+							t1={matches[matchId].t1}
+							t2={matches[matchId].t2}
+							win={matches[matchId].win}
+							runsT1={matches[matchId].runsT1}
+							runsT2={matches[matchId].runsT2}
+							oversT1={matches[matchId].oversT1}
+							oversT2={matches[matchId].oversT2}
+							handleRunsOversChange={(which, value) =>
+								handleRunsOversChange(matchId, which, value)
+							}
+							selectWinner={(winner) => selectWinner(matchId, winner)}
 						/>
 					))}
 				</div>

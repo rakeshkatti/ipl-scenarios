@@ -36,7 +36,7 @@ body {
 	flex: 1;
 }
 
-.game-container > div {
+/* .game-container > div {
 	width: 48%;
 	text-align: center;
 	padding: 0.7rem;
@@ -44,7 +44,7 @@ body {
 	background: white;
 	border-radius: 0.2rem;
 	margin: 0.1rem;
-}
+} */
 
 .header {
 	padding-top: 10px;
@@ -108,23 +108,13 @@ h3 {
 	/* width: 100%; */
 }
 
-.game-container {
+.gamecontainer {
 	width: 100%;
 	text-align: center;
 }
 
-@media (min-width: 768px) {
-	/* Tablets and above */
-	.game-container > div {
-		width: 32%; /* Shows three games per row instead of two */
-	}
-}
-
-@media (min-width: 1024px) {
-	/* Desktops */
-	.game-container > div {
-		width: 24%; /* Shows four games per row */
-	}
+.gamecontainer > div {
+	width: 100%; /* Shows three games per row instead of two */
 }
 
 .disclaimer {
@@ -144,10 +134,6 @@ h3 {
 	margin-left: 20px;
 }
 
-.match {
-	float: left;
-}
-
 .scenarios-section {
 	background-color: #fff;
 	padding: 5px 15px;
@@ -160,4 +146,63 @@ h3 {
 	padding: 1em 1em 0 1.5em;
 	display: flex;
 	justify-content: space-between;
+}
+/* Game Component Styles */
+.game-container {
+	background-color: #ffffff;
+	color: #000;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	padding: 20px;
+	margin: 20px auto;
+	max-width: 800px;
+}
+
+.match-number {
+	font-size: 0.85rem;
+	color: #666;
+	margin-bottom: 10px;
+}
+
+.game-team {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 10px;
+}
+
+.game-action {
+	flex-basis: 30%;
+	text-align: center;
+}
+
+.game-inputs {
+	display: flex;
+	justify-content: space-between;
+	flex-grow: 1;
+	margin-left: 20px;
+}
+
+.game-input {
+	width: 45%; /* Each input takes roughly half the space of inputs container */
+}
+
+/* Enhancements for readability and interaction */
+input,
+button {
+	padding: 8px 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 1rem;
+}
+
+button {
+	background-color: #007bff;
+	color: white;
+	border: none;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #0056b3;
 }
