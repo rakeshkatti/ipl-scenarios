@@ -152,15 +152,6 @@ const initialTeamData = {
 
 // Initial remaining matches data
 const initialMatchData = {
-	46: {
-		t1: "dc",
-		t2: "rcb",
-		win: "",
-		runsT1: 0,
-		runsT2: 0,
-		oversT1: 20,
-		oversT2: 20,
-	},
 	47: {
 		t1: "rr",
 		t2: "gt",
