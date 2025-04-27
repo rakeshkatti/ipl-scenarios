@@ -6,7 +6,7 @@ import {
 	initialMatchData,
 } from "../data"
 
-const CricScenarios = () => {
+const CricScenarios = ({ darkMode }) => {
 	// State for team data
 	const [teamData, setTeamData] = useState(initialTeamData)
 	// State for match results
@@ -318,11 +318,21 @@ const CricScenarios = () => {
 	return (
 		<div className="p-4 max-w-6xl mx-auto">
 			<div className="mb-8 text-center">
-				<h1 className="text-3xl font-bold text-blue-800">CricScenarios.com</h1>
-				<p className="text-gray-600 mt-2">
+				<h1
+					className={`text-3xl font-bold ${
+						darkMode ? "text-blue-400" : "text-blue-800"
+					}`}
+				>
+					Cricket Scenarios
+				</h1>
+				<p className={`mt-2 ${darkMode ? "text-gray-300" : "text-gray-600"}`}>
 					Simulate cricket playoff scenarios by selecting match winners
 				</p>
-				<p className="text-sm text-gray-500 mt-1">
+				<p
+					className={`text-sm mt-1 ${
+						darkMode ? "text-gray-400" : "text-gray-500"
+					}`}
+				>
 					Standings update automatically as you select teams
 				</p>
 			</div>
@@ -330,22 +340,34 @@ const CricScenarios = () => {
 			<div className="grid grid-cols-1 gap-6">
 				{/* Current Standings */}
 				<div>
-					<div className="bg-white rounded-lg shadow p-4">
+					<div
+						className={`rounded-lg shadow p-4 ${
+							darkMode ? "bg-gray-800" : "bg-white"
+						}`}
+					>
 						<div className="flex justify-between items-center mb-4">
 							<h2 className="text-xl font-semibold">Current Standings</h2>
 							<div>
 								<button
 									onClick={resetSelections}
-									className="bg-gray-200 text-gray-800 py-1 px-2 rounded hover:bg-gray-300"
+									className={`py-1 px-2 rounded hover:bg-gray-300 ${
+										darkMode
+											? "bg-gray-700 text-gray-200 hover:bg-gray-600"
+											: "bg-gray-200 text-gray-800"
+									}`}
 								>
 									Reset All
 								</button>
 							</div>
 						</div>
 						<div className="overflow-x-auto">
-							<table className="min-w-full bg-white">
+							<table
+								className={`min-w-full ${
+									darkMode ? "bg-gray-800" : "bg-white"
+								}`}
+							>
 								<thead>
-									<tr className="bg-blue-100">
+									<tr className={darkMode ? "bg-gray-700" : "bg-blue-100"}>
 										<th className="py-2 px-4 text-left">Pos</th>
 										<th className="py-2 px-4 text-left">Team</th>
 										<th className="py-2 px-4 text-center">M</th>
@@ -360,7 +382,15 @@ const CricScenarios = () => {
 									{standings.map((team, index) => (
 										<tr
 											key={team.id}
-											className={index < 4 ? "bg-green-50" : ""}
+											className={
+												index < 4
+													? darkMode
+														? "bg-green-900 bg-opacity-30"
+														: "bg-green-50"
+													: darkMode
+													? ""
+													: ""
+											}
 											style={{ borderLeft: `4px solid ${team.color}` }}
 										>
 											<td className="py-2 px-4">{index + 1}</td>
@@ -380,7 +410,11 @@ const CricScenarios = () => {
 								</tbody>
 							</table>
 						</div>
-						<div className="mt-4 text-sm text-gray-500">
+						<div
+							className={`mt-4 text-sm ${
+								darkMode ? "text-gray-400" : "text-gray-500"
+							}`}
+						>
 							<p>
 								* Teams highlighted in green are currently in playoff positions
 								(top 4)
@@ -396,14 +430,22 @@ const CricScenarios = () => {
 
 			{/* Remaining Fixtures */}
 			<div className="mt-6">
-				<div className="bg-white rounded-lg shadow p-4">
+				<div
+					className={`rounded-lg shadow p-4 ${
+						darkMode ? "bg-gray-800" : "bg-white"
+					}`}
+				>
 					<div className="flex justify-between items-center mb-4">
-						<h2 className="text-xl font-semibold mb-4">Remaining Fixtures</h2>
+						<h2 className="text-xl font-semibold">Remaining Fixtures</h2>
 						<button
 							onClick={toggleEditMode}
 							className={`px-2 py-1 rounded mr-2 ${
 								editModeEnabled
-									? "bg-blue-600 text-white"
+									? darkMode
+										? "bg-blue-600 text-white"
+										: "bg-blue-600 text-white"
+									: darkMode
+									? "bg-gray-700 text-gray-200"
 									: "bg-gray-200 text-gray-800"
 							}`}
 						>
@@ -420,13 +462,20 @@ const CricScenarios = () => {
 							return (
 								<div
 									key={matchId}
-									className="border rounded-lg p-3"
+									className={`border rounded-lg p-3 ${
+										darkMode ? "border-gray-700 bg-gray-800" : ""
+									}`}
 									style={{
-										background:
-											"linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 100%)",
+										background: darkMode
+											? "linear-gradient(135deg, rgba(31,41,55,1) 0%, rgba(17,24,39,1) 100%)"
+											: "linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 100%)",
 									}}
 								>
-									<div className="text-sm text-gray-500 mb-2">
+									<div
+										className={`text-sm mb-2 ${
+											darkMode ? "text-gray-400" : "text-gray-500"
+										}`}
+									>
 										<span>Match {matchId}</span>
 									</div>
 
@@ -436,27 +485,45 @@ const CricScenarios = () => {
 											className={`px-2 py-1 rounded text-sm flex-1 mr-1 ${
 												match.win === match.t1
 													? "text-white"
+													: darkMode
+													? "bg-gray-700 hover:bg-blue-900"
 													: "bg-white hover:bg-blue-100"
 											}`}
 											style={{
 												backgroundColor:
-													match.win === match.t1 ? team1Color : "white",
+													match.win === match.t1
+														? team1Color
+														: darkMode
+														? "#374151"
+														: "white",
 												borderLeft: `3px solid ${team1Color}`,
 											}}
 										>
 											{team1}
 										</button>
-										<span className="text-xs mx-1">vs</span>
+										<span
+											className={`text-xs mx-1 ${
+												darkMode ? "text-gray-400" : ""
+											}`}
+										>
+											vs
+										</span>
 										<button
 											onClick={() => setMatchWinner(matchId, match.t2)}
 											className={`px-2 py-1 rounded text-sm flex-1 ml-1 ${
 												match.win === match.t2
 													? "text-white"
+													: darkMode
+													? "bg-gray-700 hover:bg-blue-900"
 													: "bg-white hover:bg-blue-100"
 											}`}
 											style={{
 												backgroundColor:
-													match.win === match.t2 ? team2Color : "white",
+													match.win === match.t2
+														? team2Color
+														: darkMode
+														? "#374151"
+														: "white",
 												borderRight: `3px solid ${team2Color}`,
 											}}
 										>
@@ -470,6 +537,8 @@ const CricScenarios = () => {
 											className={`px-2 py-1 rounded text-xs ${
 												match.win === "nr"
 													? "bg-yellow-500 text-white"
+													: darkMode
+													? "bg-gray-700 hover:bg-yellow-900"
 													: "bg-gray-100 hover:bg-yellow-100"
 											}`}
 										>
@@ -478,10 +547,18 @@ const CricScenarios = () => {
 									</div>
 
 									{editModeEnabled && (
-										<div className="mt-3 border-t pt-2">
+										<div
+											className={`mt-3 border-t pt-2 ${
+												darkMode ? "border-gray-700" : ""
+											}`}
+										>
 											<div className="grid grid-cols-2 gap-2 mb-2">
 												<div>
-													<div className="text-xs text-gray-500 mb-1">
+													<div
+														className={`text-xs mb-1 ${
+															darkMode ? "text-gray-400" : "text-gray-500"
+														}`}
+													>
 														{team1} Score
 													</div>
 													<div className="flex">
@@ -495,11 +572,21 @@ const CricScenarios = () => {
 																	e.target.value
 																)
 															}
-															className="w-16 p-1 text-sm border rounded"
+															className={`w-16 p-1 text-sm border rounded ${
+																darkMode
+																	? "bg-gray-700 border-gray-600 text-white"
+																	: "border-gray-300"
+															}`}
 															min="0"
 															max="300"
 														/>
-														<span className="mx-1 text-xs self-center">/</span>
+														<span
+															className={`mx-1 text-xs self-center ${
+																darkMode ? "text-gray-400" : ""
+															}`}
+														>
+															/
+														</span>
 														<input
 															type="number"
 															value={match.oversT1}
@@ -510,18 +597,30 @@ const CricScenarios = () => {
 																	e.target.value
 																)
 															}
-															className="w-16 p-1 text-sm border rounded"
+															className={`w-16 p-1 text-sm border rounded ${
+																darkMode
+																	? "bg-gray-700 border-gray-600 text-white"
+																	: "border-gray-300"
+															}`}
 															min="0"
 															max="20"
 															step="0.1"
 														/>
-														<span className="ml-1 text-xs self-center">
+														<span
+															className={`ml-1 text-xs self-center ${
+																darkMode ? "text-gray-400" : ""
+															}`}
+														>
 															overs
 														</span>
 													</div>
 												</div>
 												<div>
-													<div className="text-xs text-gray-500 mb-1">
+													<div
+														className={`text-xs mb-1 ${
+															darkMode ? "text-gray-400" : "text-gray-500"
+														}`}
+													>
 														{team2} Score
 													</div>
 													<div className="flex">
@@ -535,11 +634,21 @@ const CricScenarios = () => {
 																	e.target.value
 																)
 															}
-															className="w-16 p-1 text-sm border rounded"
+															className={`w-16 p-1 text-sm border rounded ${
+																darkMode
+																	? "bg-gray-700 border-gray-600 text-white"
+																	: "border-gray-300"
+															}`}
 															min="0"
 															max="300"
 														/>
-														<span className="mx-1 text-xs self-center">/</span>
+														<span
+															className={`mx-1 text-xs self-center ${
+																darkMode ? "text-gray-400" : ""
+															}`}
+														>
+															/
+														</span>
 														<input
 															type="number"
 															value={match.oversT2}
@@ -550,19 +659,31 @@ const CricScenarios = () => {
 																	e.target.value
 																)
 															}
-															className="w-16 p-1 text-sm border rounded"
+															className={`w-16 p-1 text-sm border rounded ${
+																darkMode
+																	? "bg-gray-700 border-gray-600 text-white"
+																	: "border-gray-300"
+															}`}
 															min="0"
 															max="20"
 															step="0.1"
 														/>
-														<span className="ml-1 text-xs self-center">
+														<span
+															className={`ml-1 text-xs self-center ${
+																darkMode ? "text-gray-400" : ""
+															}`}
+														>
 															overs
 														</span>
 													</div>
 												</div>
 											</div>
 											{match.win && (
-												<div className="text-xs text-gray-500 mt-1">
+												<div
+													className={`text-xs mt-1 ${
+														darkMode ? "text-gray-400" : "text-gray-500"
+													}`}
+												>
 													<p>
 														NRR Impact: This match will affect Net Run Rate
 														calculations
@@ -578,11 +699,24 @@ const CricScenarios = () => {
 				</div>
 			</div>
 
-			<footer className="mt-8 text-center text-gray-500 text-sm">
+			<footer
+				className={`mt-8 text-center text-sm ${
+					darkMode ? "text-gray-400" : "text-gray-500"
+				}`}
+			>
 				<p>
 					Made by a RCB fan with ❤️ and 😰 since 2022. Report any
 					issues/feedback at{" "}
-					<a href="https://x.com/rakesh_katti">@rakesh_katti</a>
+					<a
+						href="https://x.com/rakesh_katti"
+						className={
+							darkMode
+								? "text-blue-400 hover:underline"
+								: "text-blue-600 hover:underline"
+						}
+					>
+						@rakesh_katti
+					</a>
 				</p>
 			</footer>
 		</div>

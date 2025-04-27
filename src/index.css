@@ -2,7 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Additional styles for the IPL Playoff Simulator */
+/* Base styles */
+html {
+	height: 100%;
+}
+
+body {
+	min-height: 100%;
+	margin: 0;
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#root {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+/* Dark mode transitions */
+.dark {
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Additional styles for the CricScenarios app */
 .rounded-lg {
 	overflow: hidden;
 }
@@ -23,6 +45,11 @@ td {
 	border-bottom: 1px solid #e5e7eb;
 }
 
+.dark th,
+.dark td {
+	border-bottom: 1px solid #374151;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
 	.md\:grid-cols-2 {
@@ -33,4 +60,9 @@ td {
 /* Fix scrolling on mobile */
 .overflow-x-auto {
 	-webkit-overflow-scrolling: touch;
+}
+
+/* Dark mode styles for inputs */
+.dark input {
+	color-scheme: dark;
 }
