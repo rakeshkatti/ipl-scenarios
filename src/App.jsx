@@ -16,14 +16,53 @@ function App() {
 	const toggleDarkMode = () => {
 		setDarkMode(!darkMode)
 		// Store preference in localStorage
-		localStorage.setItem("darkMode", !darkMode)
+		localStorage.setItem("darkMode", (!darkMode).toString())
 	}
 
-	// Check for dark mode preference in localStorage on app load
+	// Check for dark mode preference in localStorage or system preference on app load
 	useEffect(() => {
+		// First check if user has a saved preference
 		const savedDarkMode = localStorage.getItem("darkMode")
-		if (savedDarkMode === "true") {
-			setDarkMode(true)
+
+		if (savedDarkMode !== null) {
+			// User has a saved preference, use that
+			setDarkMode(savedDarkMode === "true")
+		} else {
+			// No saved preference, check system preference
+			const prefersDarkMode = window.matchMedia(
+				"(prefers-color-scheme: dark)"
+			).matches
+			setDarkMode(prefersDarkMode)
+
+			// Save this preference to localStorage
+			localStorage.setItem("darkMode", prefersDarkMode.toString())
+		}
+
+		// Add listener for system preference changes
+		const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
+		const handleChange = (e) => {
+			// Only update if user hasn't set a preference
+			if (localStorage.getItem("darkMode") === null) {
+				setDarkMode(e.matches)
+			}
+		}
+
+		// Add the callback to handle changes
+		if (mediaQuery.addEventListener) {
+			mediaQuery.addEventListener("change", handleChange)
+		} else {
+			// For older browsers
+			mediaQuery.addListener(handleChange)
+		}
+
+		// Clean up
+		return () => {
+			if (mediaQuery.removeEventListener) {
+				mediaQuery.removeEventListener("change", handleChange)
+			} else {
+				// For older browsers
+				mediaQuery.removeListener(handleChange)
+			}
 		}
 	}, [])
 

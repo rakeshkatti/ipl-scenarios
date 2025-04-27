@@ -442,11 +442,11 @@ const CricScenarios = ({ darkMode }) => {
 							className={`px-2 py-1 rounded mr-2 ${
 								editModeEnabled
 									? darkMode
-										? "bg-blue-600 text-white"
-										: "bg-blue-600 text-white"
+										? "bg-gray-700 text-gray-200"
+										: "bg-gray-200 text-gray-800"
 									: darkMode
-									? "bg-gray-700 text-gray-200"
-									: "bg-gray-200 text-gray-800"
+									? "bg-blue-600 text-white"
+									: "bg-blue-600 text-white"
 							}`}
 						>
 							{editModeEnabled ? "Hide NRR Impact" : "Show NRR Impact"}
