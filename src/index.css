@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Additional styles for the IPL Playoff Simulator */
+.rounded-lg {
+	overflow: hidden;
+}
+
+/* Enhance readability for team labels */
+button {
+	transition: all 0.2s ease;
+}
+
+/* Improve table styling */
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+
+th,
+td {
+	border-bottom: 1px solid #e5e7eb;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+	.md\:grid-cols-2 {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* Fix scrolling on mobile */
+.overflow-x-auto {
+	-webkit-overflow-scrolling: touch;
+}
