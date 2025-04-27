@@ -28,6 +28,18 @@ const teamColors = {
 
 // Initial team data with match statistics
 const initialTeamData = {
+	rcb: {
+		m: 10,
+		w: 7,
+		l: 3,
+		nr: 0,
+		p: 14,
+		nrr: 0.521,
+		runs_scored: 1725,
+		overs_faced: 185.1,
+		runs_conceded: 1652,
+		overs_bowled: 187.5,
+	},
 	gt: {
 		m: 8,
 		w: 6,
@@ -53,28 +65,16 @@ const initialTeamData = {
 		overs_bowled: 199.1,
 	},
 	dc: {
-		m: 8,
-		w: 6,
-		l: 2,
-		nr: 0,
-		p: 12,
-		nrr: 0.657,
-		runs_scored: 1474,
-		overs_faced: 151.1,
-		runs_conceded: 1449,
-		overs_bowled: 159.2,
-	},
-	rcb: {
 		m: 9,
 		w: 6,
 		l: 3,
 		nr: 0,
 		p: 12,
 		nrr: 0.482,
-		runs_scored: 1560,
-		overs_faced: 166.4,
-		runs_conceded: 1490,
-		overs_bowled: 167.5,
+		runs_scored: 1636,
+		overs_faced: 171.1,
+		runs_conceded: 1614,
+		overs_bowled: 177.5,
 	},
 	pbks: {
 		m: 9,
