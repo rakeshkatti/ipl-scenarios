@@ -40,18 +40,6 @@ const initialTeamData = {
 		runs_conceded: 1652,
 		overs_bowled: 187.5,
 	},
-	gt: {
-		m: 8,
-		w: 6,
-		l: 2,
-		nr: 0,
-		p: 12,
-		nrr: 1.104,
-		runs_scored: 1550,
-		overs_faced: 153.5,
-		runs_conceded: 1431,
-		overs_bowled: 159.3,
-	},
 	mi: {
 		m: 10,
 		w: 6,
@@ -63,6 +51,18 @@ const initialTeamData = {
 		overs_faced: 182.2,
 		runs_conceded: 1729,
 		overs_bowled: 199.1,
+	},
+	gt: {
+		m: 9,
+		w: 6,
+		l: 3,
+		nr: 0,
+		p: 12,
+		nrr: 0.748,
+		runs_scored: 1759,
+		overs_faced: 173.5,
+		runs_conceded: 1643,
+		overs_bowled: 175.2,
 	},
 	dc: {
 		m: 9,
@@ -112,6 +112,18 @@ const initialTeamData = {
 		runs_conceded: 1219,
 		overs_bowled: 149.1,
 	},
+	rr: {
+		m: 10,
+		w: 3,
+		l: 7,
+		nr: 0,
+		p: 6,
+		nrr: -0.349,
+		runs_scored: 1884,
+		overs_faced: 195.5,
+		runs_conceded: 1944,
+		overs_bowled: 195.0,
+	},
 	srh: {
 		m: 9,
 		w: 3,
@@ -123,18 +135,6 @@ const initialTeamData = {
 		overs_faced: 177.1,
 		runs_conceded: 1665,
 		overs_bowled: 162.4,
-	},
-	rr: {
-		m: 9,
-		w: 2,
-		l: 7,
-		nr: 0,
-		p: 4,
-		nrr: -0.625,
-		runs_scored: 1672,
-		overs_faced: 180.0,
-		runs_conceded: 1735,
-		overs_bowled: 175.0,
 	},
 	csk: {
 		m: 9,
@@ -152,15 +152,6 @@ const initialTeamData = {
 
 // Initial remaining matches data
 const initialMatchData = {
-	47: {
-		t1: "rr",
-		t2: "gt",
-		win: "",
-		runsT1: 0,
-		runsT2: 0,
-		oversT1: 20,
-		oversT2: 20,
-	},
 	48: {
 		t1: "dc",
 		t2: "kkr",
