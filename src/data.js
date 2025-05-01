@@ -27,7 +27,7 @@ const teamColors = {
 }
 
 // Teams that are eliminated from playoff contention
-const eliminatedTeams = ["csk"]
+const eliminatedTeams = ["csk", "rr"]
 
 // Teams that have qualified for the playoffs
 const qualifiedTeams = []
