@@ -26,6 +26,12 @@ const teamColors = {
 	tbd: "#808080",
 }
 
+// Teams that are eliminated from playoff contention
+const eliminatedTeams = ["csk"]
+
+// Teams that have qualified for the playoffs
+const qualifiedTeams = []
+
 // Initial team data with match statistics
 const initialTeamData = {
 	rcb: {
@@ -343,4 +349,11 @@ const initialMatchData = {
 	},
 }
 
-export { teamFullNames, teamColors, initialTeamData, initialMatchData }
+export {
+	teamFullNames,
+	teamColors,
+	initialTeamData,
+	initialMatchData,
+	eliminatedTeams,
+	qualifiedTeams,
+}

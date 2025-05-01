@@ -4,6 +4,8 @@ import {
 	teamColors,
 	initialTeamData,
 	initialMatchData,
+	eliminatedTeams,
+	qualifiedTeams,
 } from "../data"
 
 const CricScenarios = ({ darkMode }) => {
@@ -316,7 +318,7 @@ const CricScenarios = ({ darkMode }) => {
 	)
 
 	return (
-		<div className="p-4 max-w-6xl mx-auto">
+		<div className="p-2 sm:p-4 max-w-6xl mx-auto">
 			<div className="mb-8 text-center">
 				<h1
 					className={`text-3xl font-bold ${
@@ -394,7 +396,19 @@ const CricScenarios = ({ darkMode }) => {
 											style={{ borderLeft: `4px solid ${team.color}` }}
 										>
 											<td className="py-2 px-4">{index + 1}</td>
-											<td className="py-2 px-4 font-medium">{team.name}</td>
+											<td className="py-2 px-4 font-medium">
+												{team.name}
+												{eliminatedTeams.includes(team.id) && (
+													<span className="ml-1 text-xs font-bold text-red-600">
+														&nbsp;E
+													</span>
+												)}
+												{qualifiedTeams.includes(team.id) && (
+													<span className="ml-1 text-xs font-bold text-green-600">
+														&nbsp;Q
+													</span>
+												)}
+											</td>
 											<td className="py-2 px-4 text-center">{team.m}</td>
 											<td className="py-2 px-4 text-center">{team.w}</td>
 											<td className="py-2 px-4 text-center">{team.l}</td>
@@ -422,6 +436,12 @@ const CricScenarios = ({ darkMode }) => {
 							<p>
 								* In case of equal points, team with higher NRR gets the higher
 								position
+							</p>
+							<p>
+								* <span className="font-bold text-red-600">E</span>: Eliminated
+								from playoff contention |{" "}
+								<span className="font-bold text-green-600">Q</span>: Qualified
+								for playoffs
 							</p>
 						</div>
 					</div>
