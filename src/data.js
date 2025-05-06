@@ -27,7 +27,7 @@ const teamColors = {
 }
 
 // Teams that are eliminated from playoff contention
-const eliminatedTeams = ["csk", "rr"]
+const eliminatedTeams = ["csk", "rr", "srh"]
 
 // Teams that have qualified for the playoffs
 const qualifiedTeams = []
@@ -71,11 +71,11 @@ const initialTeamData = {
 		overs_bowled: 195.2,
 	},
 	dc: {
-		m: 10,
+		m: 11,
 		w: 6,
 		l: 4,
-		nr: 0,
-		p: 12,
+		nr: 1,
+		p: 13,
 		nrr: 0.362,
 		runs_scored: 1826,
 		overs_faced: 191.1,
@@ -83,28 +83,28 @@ const initialTeamData = {
 		overs_bowled: 197.5,
 	},
 	pbks: {
-		m: 10,
-		w: 6,
+		m: 11,
+		w: 7,
 		l: 3,
 		nr: 1,
-		p: 13,
-		nrr: 0.199,
-		runs_scored: 1599,
-		overs_faced: 168.1,
-		runs_conceded: 1595,
-		overs_bowled: 171.2,
+		p: 15,
+		nrr: 0.376,
+		runs_scored: 1835,
+		overs_faced: 188.1,
+		runs_conceded: 1794,
+		overs_bowled: 191.2,
 	},
 	lsg: {
-		m: 10,
+		m: 11,
 		w: 5,
-		l: 5,
+		l: 6,
 		nr: 0,
 		p: 10,
-		nrr: -0.325,
-		runs_scored: 1866,
-		overs_faced: 195.4,
-		runs_conceded: 1905,
-		overs_bowled: 193.1,
+		nrr: -0.469,
+		runs_scored: 2065,
+		overs_faced: 215.4,
+		runs_conceded: 2141,
+		overs_bowled: 213.1,
 	},
 	kkr: {
 		m: 11,
@@ -131,11 +131,11 @@ const initialTeamData = {
 		overs_bowled: 235.0,
 	},
 	srh: {
-		m: 10,
+		m: 11,
 		w: 3,
 		l: 7,
-		nr: 0,
-		p: 6,
+		nr: 1,
+		p: 7,
 		nrr: -1.192,
 		runs_scored: 1804,
 		overs_faced: 197.1,
@@ -158,24 +158,6 @@ const initialTeamData = {
 
 // Initial remaining matches data
 const initialMatchData = {
-	54: {
-		t1: "pbks",
-		t2: "lsg",
-		win: "",
-		runsT1: 0,
-		runsT2: 0,
-		oversT1: 20,
-		oversT2: 20,
-	},
-	55: {
-		t1: "srh",
-		t2: "dc",
-		win: "",
-		runsT1: 0,
-		runsT2: 0,
-		oversT1: 20,
-		oversT2: 20,
-	},
 	56: {
 		t1: "mi",
 		t2: "gt",
