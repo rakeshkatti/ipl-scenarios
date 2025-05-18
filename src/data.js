@@ -27,31 +27,31 @@ const teamColors = {
 }
 
 // Teams that are eliminated from playoff contention
-const eliminatedTeams = ["csk", "rr", "srh"]
+const eliminatedTeams = ["csk", "rr", "srh", "kkr"]
 
 // Teams that have qualified for the playoffs
-const qualifiedTeams = []
+const qualifiedTeams = ["gt", "rcb", "pbks"]
 
 // Initial team data with match statistics
 const initialTeamData = {
 	gt: {
-		m: 11,
-		w: 8,
+		m: 12,
+		w: 9,
 		l: 3,
 		nr: 0,
-		p: 16,
-		nrr: 0.793,
-		runs_scored: 2130,
-		overs_faced: 212.5,
-		runs_conceded: 1975,
-		overs_bowled: 214.2,
+		p: 18,
+		nrr: 0.795,
+		runs_scored: 2335,
+		overs_faced: 231.5,
+		runs_conceded: 2174,
+		overs_bowled: 234.2,
 	},
 	rcb: {
-		m: 11,
+		m: 12,
 		w: 8,
 		l: 3,
-		nr: 0,
-		p: 16,
+		nr: 1,
+		p: 17,
 		nrr: 0.482,
 		runs_scored: 1938,
 		overs_faced: 205.1,
@@ -59,16 +59,16 @@ const initialTeamData = {
 		overs_bowled: 207.5,
 	},
 	pbks: {
-		m: 11,
-		w: 7,
+		m: 12,
+		w: 8,
 		l: 3,
 		nr: 1,
-		p: 15,
-		nrr: 0.376,
-		runs_scored: 1835,
-		overs_faced: 188.1,
-		runs_conceded: 1794,
-		overs_bowled: 191.2,
+		p: 17,
+		nrr: 0.389,
+		runs_scored: 2054,
+		overs_faced: 208.1,
+		runs_conceded: 2003,
+		overs_bowled: 211.2,
 	},
 	mi: {
 		m: 12,
@@ -83,23 +83,23 @@ const initialTeamData = {
 		overs_bowled: 238.1,
 	},
 	dc: {
-		m: 11,
+		m: 12,
 		w: 6,
-		l: 4,
+		l: 5,
 		nr: 1,
 		p: 13,
-		nrr: 0.362,
-		runs_scored: 1826,
-		overs_faced: 191.1,
-		runs_conceded: 1818,
-		overs_bowled: 197.5,
+		nrr: 0.26,
+		runs_scored: 2025,
+		overs_faced: 211.1,
+		runs_conceded: 2023,
+		overs_bowled: 216.5,
 	},
 	kkr: {
-		m: 12,
+		m: 13,
 		w: 5,
 		l: 6,
-		nr: 1,
-		p: 11,
+		nr: 2,
+		p: 12,
 		nrr: 0.193,
 		runs_scored: 1827,
 		overs_faced: 207.4,
@@ -131,16 +131,16 @@ const initialTeamData = {
 		overs_bowled: 182.4,
 	},
 	rr: {
-		m: 12,
+		m: 13,
 		w: 3,
-		l: 9,
+		l: 10,
 		nr: 0,
 		p: 6,
-		nrr: -0.718,
-		runs_scored: 2206,
-		overs_faced: 235.5,
-		runs_conceded: 2367,
-		overs_bowled: 235.0,
+		nrr: -0.701,
+		runs_scored: 2415,
+		overs_faced: 255.5,
+		runs_conceded: 2586,
+		overs_bowled: 255.0,
 	},
 	csk: {
 		m: 12,
@@ -158,33 +158,6 @@ const initialTeamData = {
 
 // Initial remaining matches data
 const initialMatchData = {
-	58: {
-		t1: "rcb",
-		t2: "kkr",
-		win: "",
-		runsT1: 0,
-		runsT2: 0,
-		oversT1: 20,
-		oversT2: 20,
-	},
-	59: {
-		t1: "rr",
-		t2: "pbks",
-		win: "",
-		runsT1: 0,
-		runsT2: 0,
-		oversT1: 20,
-		oversT2: 20,
-	},
-	60: {
-		t1: "dc",
-		t2: "gt",
-		win: "",
-		runsT1: 0,
-		runsT2: 0,
-		oversT1: 20,
-		oversT2: 20,
-	},
 	61: {
 		t1: "lsg",
 		t2: "srh",
