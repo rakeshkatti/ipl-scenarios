@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import "./App.css"
 
-const REDIRECT_URL = "https://criccheer.com/standings?tab=simulator"
+const REDIRECT_URL = "https://criccheer.com/standings?tab=simulator&source=ipl-scenarios"
 const REDIRECT_SECONDS = 6
 
 // Fire a Google Analytics event for the redirect.
